@@ -44,7 +44,7 @@ function CardCategoria({ noticia, destaque }: { noticia: Noticia; destaque?: boo
           }
         </div>
         <div style={{ padding: destaque ? "14px 16px 16px" : "10px 14px", display: "flex", flexDirection: "column", gap: 6, flex: 1, minWidth: 0 }}>
-          <Badge categoria={noticia.categoria} />
+          {/* <Badge categoria={noticia.categoria} /> */}
           <h3 style={{
             fontFamily: "var(--fonte-titulo)", fontWeight: 600,
             fontSize: destaque ? "1.05rem" : "0.88rem",

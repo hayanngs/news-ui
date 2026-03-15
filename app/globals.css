@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Azul institucional — inspirado G1/Mais Goiás */
+  --azul:          #006EAC;
+  --azul-escuro:   #004F7C;
+  --azul-hover:    #005A8E;
+  --azul-claro:    #E8F4FC;
+
+  /* Neutros */
+  --fundo:         #F2F2F2;
+  --fundo-branco:  #FFFFFF;
+  --borda:         #DEDEDE;
+  --cinza-texto:   #666666;
+  --cinza-medio:   #999999;
+  --texto:         #1A1A1A;
+
+  /* Categorias */
+  --cat-politica:  #C0392B;
+  --cat-economia:  #27AE60;
+  --cat-direitos:  #8E44AD;
+  --cat-cultura:   #E67E22;
+  --cat-saude:     #16A085;
+
+  /* Tipografia */
+  --fonte-ui:      'IBM Plex Sans', system-ui, sans-serif;
+  --fonte-titulo:  'IBM Plex Serif', Georgia, serif;
+
+  --max-w:         1200px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-ui);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.25;
+  color: var(--texto);
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+
+/* ── Layout ── */
+.w-portal {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ── Seção com título estilo G1 ── */
+.secao-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--azul);
+}
+.secao-titulo span {
+  font-family: var(--fonte-ui);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--azul);
+}
+
+/* ── Badge de categoria ── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  background: var(--azul);
+  color: #fff;
+  flex-shrink: 0;
+}
+.badge-politica  { background: var(--cat-politica); }
+.badge-economia  { background: var(--cat-economia); }
+.badge-direitos  { background: var(--cat-direitos); }
+.badge-cultura   { background: var(--cat-cultura); }
+.badge-saude     { background: var(--cat-saude); }
+
+/* ── Conteúdo da notícia ── */
+.conteudo-noticia {
+  font-family: var(--fonte-ui);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--texto);
+}
+.conteudo-noticia p { margin-bottom: 1.4rem; }
+.conteudo-noticia h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  margin: 2rem 0 0.8rem;
+}
+.conteudo-noticia blockquote {
+  border-left: 4px solid var(--azul);
+  padding-left: 1.2rem;
+  margin: 1.8rem 0;
+  font-style: italic;
+  color: var(--cinza-texto);
+  font-size: 1.1rem;
+}
+.conteudo-noticia img { width: 100%; height: auto; margin: 1.5rem 0; border-radius: 4px; }
+
+/* ── Animação entrada ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.4s ease forwards;
+}
+
+/* ── Classes de navegação (hover via CSS puro) ── */
+.nav-link {
+  padding: 11px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texto);
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  text-decoration: none;
+  display: block;
+}
+.nav-link:hover {
+  color: var(--azul);
+  border-bottom-color: var(--azul);
+}
+.nav-link-ativo {
+  padding: 11px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--azul);
+  border-bottom: 3px solid var(--azul);
+  text-decoration: none;
+  display: block;
+}
+.nav-mobile-link {
+  display: block;
+  padding: 13px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--borda);
+  color: var(--texto);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-mobile-link:hover { color: var(--azul); }
+.nav-mobile-ativo {
+  display: block;
+  padding: 13px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--borda);
+  color: var(--azul);
+  text-decoration: none;
+}
+.footer-link {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: #fff; }
+
+/* ADICIONE ISSO NO FINAL DO globals.css */
+
+/* ── Correção do container principal ── */
+.w-portal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Página de notícia: centraliza conteúdo ── */
+.artigo-container {
+  max-width: 720px;
+}
+
+/* ── Páginas internas (sobre, direitos, pessoas): cabeçalho com fundo azul ── */
+.pagina-header {
+  background: var(--azul);
+  padding: 36px 0;
+  margin-bottom: 40px;
+}
+.pagina-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.pagina-header .label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+}
+.pagina-header h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.pagina-header p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ── Ícones sociais — adicione no final do globals.css ── */
+
+.social-icon-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+}
+.social-icon-nav:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.social-icon-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+}
+.social-icon-footer:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}

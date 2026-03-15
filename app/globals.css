@@ -270,3 +270,11 @@ img { display: block; }
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* Novas badges de categoria */
+.badge-esporte        { background: #1a7a2e; }
+.badge-entretenimento { background: var(--cat-cultura); }
+.badge-seguranca        { background: #555555; }
+
+/* Barra de categorias sem scrollbar visível */
+nav::-webkit-scrollbar { display: none; }

@@ -1,5 +1,5 @@
 // app/page.tsx
-import { getUltimasNoticias, getNoticiasPorCategoria, getNoticiasDestaque } from "@/lib/api"
+import { getUltimasNoticias, getNoticiasPorCategoria, getNoticiasDestaque, getMaisLidas } from "@/lib/api"
 import { CardLista, CardGrid, CardHero } from "@/components/CardNoticia"
 import Link from "next/link"
 import Image from "next/image"
@@ -48,7 +48,7 @@ function TituloSecao({ label, href, cor = "var(--azul)" }: { label: string; href
 }
 
 export default async function PaginaInicial() {
-  const [destaques, { noticias: ultimas }, politica, economia, esporte, entretenimento, seguranca] = await Promise.all([
+  const [destaques, { noticias: ultimas }, politica, economia, esporte, entretenimento, seguranca, maisLidas] = await Promise.all([
     getNoticiasDestaque(),
     getUltimasNoticias(0, 20),
     getNoticiasPorCategoria("Política"),
@@ -56,10 +56,10 @@ export default async function PaginaInicial() {
     getNoticiasPorCategoria("Esporte"),
     getNoticiasPorCategoria("Entretenimento"),
     getNoticiasPorCategoria("Segurança"),
+    getMaisLidas(),
   ])
 
   const [hero, sec1, sec2] = destaques
-  const maisLidas = ultimas.slice(0, 5)
 
   return (
     <div style={{ background: "var(--fundo)", minHeight: "100vh" }}>

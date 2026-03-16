@@ -375,6 +375,27 @@ export async function getUltimasNoticias(pagina = 0, tamanho = 12) {
   }
 }
 
+/**
+ * Retorna as notícias mais lidas.
+ * Por enquanto retorna as primeiras 5 do mock (sempre fixas).
+ * Quando o backend estiver pronto, trocar pela chamada:
+ * GET /api/noticias/mais-lidas?size=5
+ */
+export async function getMaisLidas(): Promise<Noticia[]> {
+  const fallback = NOTICIAS_MOCK.slice(0, 5)
+  try {
+    const res = await fetch(
+      `${API_URL}/api/noticias/mais-lidas?size=5`,
+      { next: { revalidate: 300 }, signal: AbortSignal.timeout(3000) }
+    )
+    if (!res.ok) throw new Error()
+    return res.json()
+  } catch {
+    return fallback
+  }
+}
+ 
+
 export async function getNoticiasDestaque(): Promise<Noticia[]> {
   const fallback = NOTICIAS_MOCK.filter(n => n.destaque).slice(0, 4)
   try {

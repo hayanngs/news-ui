@@ -4,5 +4,5 @@ import { PaginaCategoria } from "@/components/PaginaCategoria"
 export const metadata: Metadata = { title: "Esporte" }
 export default async function Esporte() {
   const noticias = await getNoticiasPorCategoria("Esporte")
-  return <PaginaCategoria titulo="Esporte" descricao="Futebol, olimpíadas e muito mais" noticias={noticias} cor="#1a7a2e" />
+  return <PaginaCategoria titulo="Esporte" descricao="Futebol, olimpíadas e muito mais" noticias={noticias} cor="var(--cat-esporte)" />
 }

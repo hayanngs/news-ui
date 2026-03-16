@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { getUltimasNoticias } from "@/lib/api"
+import { getUltimasNoticias, getMaisLidas } from "@/lib/api"
 import { Noticia } from "@/types"
 import { CardLista } from "@/components/CardNoticia"
 import { BADGE_CLASSE } from "@/constants"
@@ -134,10 +134,11 @@ export default async function UltimasNoticias({
   searchParams: { pagina?: string }
 }) {
   const paginaAtual = Math.max(1, parseInt(searchParams.pagina || "1", 10))
-  const { noticias, totalPaginas, totalElementos } = await getUltimasNoticias(paginaAtual - 1, POR_PAGINA)
 
-  const inicio = (paginaAtual - 1) * POR_PAGINA + 1
-  const fim = Math.min(paginaAtual * POR_PAGINA, totalElementos)
+  const [{ noticias, totalPaginas, totalElementos }, maisLidas] = await Promise.all([
+    getUltimasNoticias(paginaAtual - 1, POR_PAGINA),
+    getMaisLidas(),
+  ])
 
   return (
     <>
@@ -186,7 +187,7 @@ export default async function UltimasNoticias({
                 Mais lidas
               </div>
               <div style={{ padding: "0 14px" }}>
-                {noticias.slice(0, 5).map((n, i) => (
+                {maisLidas.map((n, i) => (
                   <CardLista key={n.id} noticia={n} index={i} />
                 ))}
               </div>

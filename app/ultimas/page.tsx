@@ -4,6 +4,7 @@ import Image from "next/image"
 import { getUltimasNoticias } from "@/lib/api"
 import { Noticia } from "@/types"
 import { CardLista } from "@/components/CardNoticia"
+import { BADGE_CLASSE } from "@/constants"
 
 export const metadata: Metadata = { title: "Últimas Notícias" }
 
@@ -14,13 +15,6 @@ function formatarData(iso: string) {
     day: "numeric", month: "long", year: "numeric",
     hour: "2-digit", minute: "2-digit"
   })
-}
-
-const BADGE_CLASSE: Record<string, string> = {
-  Política: "badge badge-politica", Economia: "badge badge-economia",
-  Esporte: "badge badge-esporte", Entretenimento: "badge badge-entretenimento",
-  Segurança: "badge badge-seguranca", Saúde: "badge badge-saude",
-  Direitos: "badge badge-direitos",
 }
 
 // Card grande horizontal — exclusivo desta página

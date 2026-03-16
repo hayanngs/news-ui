@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { getNoticia, getTodosOsslugs, getUltimasNoticias } from "@/lib/api"
 import { BotoesCompartilhar } from "@/components/BotoesCompartilhar"
+import { BADGE_CLASSE } from "@/constants"
 
 type Props = { params: { slug: string } }
 
@@ -24,11 +25,6 @@ function formatarData(iso: string) {
   return new Date(iso).toLocaleDateString("pt-BR", {
     weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit"
   })
-}
-
-const BADGE_CLASSE: Record<string, string> = {
-  Política: "badge badge-politica", Economia: "badge badge-economia",
-  Direitos: "badge badge-direitos", Cultura: "badge badge-cultura", Saúde: "badge badge-saude",
 }
 
 export default async function PaginaNoticia({ params }: Props) {

@@ -4,13 +4,9 @@ import { CardLista, CardGrid, CardHero } from "@/components/CardNoticia"
 import Link from "next/link"
 import Image from "next/image"
 import { Noticia } from "@/types"
+import { BADGE_CLASSE } from "@/constants"
 
 function CardDestaqueSec({ noticia }: { noticia: Noticia }) {
-  const BADGE: Record<string, string> = {
-    Política: "badge badge-politica", Economia: "badge badge-economia",
-    Esporte: "badge badge-esporte", Entretenimento: "badge badge-entretenimento",
-    Segurança: "badge badge-seguranca", Saúde: "badge badge-saude",
-  }
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block" style={{ flex: 1, minWidth: 0 }}>
       <article style={{ position: "relative", height: 185, borderRadius: 4, overflow: "hidden", background: "#1a1a2e" }}>
@@ -21,7 +17,7 @@ function CardDestaqueSec({ noticia }: { noticia: Noticia }) {
         )}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "14px" }}>
-          <span className={BADGE[noticia.categoria] || "badge"} style={{ marginBottom: 6, display: "inline-block" }}>
+          <span className={BADGE_CLASSE[noticia.categoria] || "badge"} style={{ marginBottom: 6, display: "inline-block" }}>
             {noticia.categoria}
           </span>
           <h3 style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 600, fontSize: "0.9rem", color: "#fff", lineHeight: 1.3 }}
@@ -105,9 +101,9 @@ export default async function PaginaInicial() {
             {[
               { label: "Política",       noticias: politica,       href: "/politica",       cor: "var(--cat-politica)" },
               { label: "Economia",       noticias: economia,       href: "/economia",       cor: "var(--cat-economia)" },
-              { label: "Esporte",        noticias: esporte,        href: "/esporte",        cor: "#1a7a2e" },
-              { label: "Entretenimento", noticias: entretenimento, href: "/entretenimento", cor: "var(--cat-cultura)" },
-              { label: "Segurança",      noticias: seguranca,      href: "/seguranca",      cor: "#555" },
+              { label: "Esporte",        noticias: esporte,        href: "/esporte",        cor: "var(--cat-esporte)" },
+              { label: "Entretenimento", noticias: entretenimento, href: "/entretenimento", cor: "var(--cat-entretenimento)" },
+              { label: "Segurança",      noticias: seguranca,      href: "/seguranca",      cor: "var(--cat-seguranca)" },
             ]
               .filter(s => s.noticias.length > 0)
               .map(secao => (

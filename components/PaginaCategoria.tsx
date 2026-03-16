@@ -4,17 +4,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Noticia } from "@/types"
+import { BADGE_CLASSE } from "@/constants"
 
 function formatarData(iso: string) {
   const data = new Date(iso)
   return data.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" })
-}
-
-const BADGE_CLASSE: Record<string, string> = {
-  Política: "badge badge-politica", Economia: "badge badge-economia",
-  Direitos: "badge badge-direitos", Cultura: "badge badge-cultura",
-  Saúde: "badge badge-saude", Esporte: "badge badge-esporte",
-  Entretenimento: "badge badge-entretenimento", Segurança: "badge badge-seguranca",
 }
 
 function Badge({ categoria }: { categoria: string }) {
@@ -44,7 +38,7 @@ function CardCategoria({ noticia, destaque }: { noticia: Noticia; destaque?: boo
           }
         </div>
         <div style={{ padding: destaque ? "14px 16px 16px" : "10px 14px", display: "flex", flexDirection: "column", gap: 6, flex: 1, minWidth: 0 }}>
-          {/* <Badge categoria={noticia.categoria} /> */}
+          <Badge categoria={noticia.categoria} /> 
           <h3 style={{
             fontFamily: "var(--fonte-titulo)", fontWeight: 600,
             fontSize: destaque ? "1.05rem" : "0.88rem",

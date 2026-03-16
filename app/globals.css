@@ -271,6 +271,23 @@ img { display: block; }
   background: rgba(255, 255, 255, 0.2);
 }
 
+.social-icon-drawer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--fundo-alt, #f0f0f0);
+  color: var(--texto);
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+}
+.social-icon-drawer:hover {
+  background: var(--azul);
+  color: #fff;
+}
+
 /* Novas badges de categoria */
 .badge-esporte        { background: #1a7a2e; }
 .badge-entretenimento { background: var(--cat-cultura); }

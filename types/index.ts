@@ -10,6 +10,7 @@ export interface Noticia {
   conteudo: string      // HTML completo da notícia
   imagemUrl: string
   categoria: string     // "Política", "Economia", etc.
+  href: string          // "/politica", "/economia", etc.
   autor: string
   publicadoEm: string   // ISO 8601: "2024-03-15T14:30:00"
   publicado: boolean

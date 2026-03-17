@@ -29,7 +29,11 @@ function formatarData(iso: string) {
 
 export default async function PaginaNoticia({ params }: Props) {
   let noticia
-  try { noticia = await getNoticia(params.slug) } catch { notFound() }
+  try { 
+    noticia = await getNoticia(params.slug) 
+  } catch { 
+    notFound() 
+  }
 
   const { noticias: relacionadas } = await getUltimasNoticias(0, 4)
   const leiaTambem = relacionadas.filter(n => n.slug !== params.slug).slice(0, 3)
@@ -40,9 +44,15 @@ export default async function PaginaNoticia({ params }: Props) {
 
         {/* Breadcrumb */}
         <nav style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--cinza-medio)", marginBottom: 24, flexWrap: "wrap" }}>
-          <Link href="/" style={{ color: "var(--azul)", textDecoration: "none" }}>Início</Link>
-          <span>/</span>
-          <span style={{ color: "var(--cinza-texto)" }}>{noticia.categoria}</span>
+          <Link href="/" style={{ color: "var(--azul)", textDecoration: "none" }}>Home</Link>
+          {noticia.href ? (
+            <>
+              <span>/</span>
+              <Link href={noticia.href} style={{ color: "var(--cinza-texto)", textDecoration: "none" }}>
+                {noticia.categoria}
+              </Link>
+            </>
+          ) : null}
           <span>/</span>
           <span className="line-clamp-1" style={{ color: "var(--cinza-medio)" }}>{noticia.titulo}</span>
         </nav>
@@ -94,7 +104,7 @@ export default async function PaginaNoticia({ params }: Props) {
           </article>
 
           {/* ── SIDEBAR ── */}
-          <aside style={{ position: "sticky", top: 80 }}>
+          <aside style={{ position: "sticky", top: 150 }}>
             <div style={{ background: "#fff", border: "1px solid var(--borda)", borderRadius: 4, overflow: "hidden" }}>
               <div style={{ background: "var(--azul)", padding: "10px 16px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
                 Leia também

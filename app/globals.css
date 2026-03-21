@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  /* Azul institucional — inspirado G1/Mais Goiás */
+  /* Azul institucional */
   --azul:          #006EAC;
   --azul-escuro:   #004F7C;
   --azul-hover:    #005A8E;
@@ -20,11 +20,12 @@
   --texto:         #1A1A1A;
 
   /* Categorias */
-  --cat-politica:  #C0392B;
-  --cat-economia:  #27AE60;
-  --cat-direitos:  #8E44AD;
-  --cat-cultura:   #E67E22;
-  --cat-saude:     #16A085;
+  --cat-politica:       #C0392B;
+  --cat-esporte:        #1a7a2e;
+  --cat-economia:       #27AE60;
+  --cat-entretenimento: #E67E22;
+  --cat-seguranca:      #555555;
+  
 
   /* Tipografia */
   --fonte-ui:      'IBM Plex Sans', system-ui, sans-serif;
@@ -92,11 +93,11 @@ img { display: block; }
   color: #fff;
   flex-shrink: 0;
 }
-.badge-politica  { background: var(--cat-politica); }
-.badge-economia  { background: var(--cat-economia); }
-.badge-direitos  { background: var(--cat-direitos); }
-.badge-cultura   { background: var(--cat-cultura); }
-.badge-saude     { background: var(--cat-saude); }
+.badge-politica       { background: var(--cat-politica); }
+.badge-esporte        { background: var(--cat-esporte); }
+.badge-economia       { background: var(--cat-economia); }
+.badge-entretenimento { background: var(--cat-entretenimento); }
+.badge-seguranca      { background: var(--cat-seguranca); }
 
 /* ── Conteúdo da notícia ── */
 .conteudo-noticia {
@@ -270,3 +271,23 @@ img { display: block; }
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
 }
+
+.social-icon-drawer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--fundo-alt, #f0f0f0);
+  color: var(--texto);
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+}
+.social-icon-drawer:hover {
+  background: var(--azul);
+  color: #fff;
+}
+
+/* Barra de categorias sem scrollbar visível */
+nav::-webkit-scrollbar { display: none; }

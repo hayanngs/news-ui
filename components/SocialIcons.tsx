@@ -96,3 +96,23 @@ export function SocialIconsFooter() {
     </div>
   )
 }
+
+// ── Versão para Gaveta (ícones escuros sobre fundo branco) ──
+export function SocialIconsDrawer() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      {redes.map(r => (
+        <a
+          key={r.nome}
+          href={r.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={r.nome}
+          className="social-icon-drawer"
+        >
+          {r.svg}
+        </a>
+      ))}
+    </div>
+  )
+}

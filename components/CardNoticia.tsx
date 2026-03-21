@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Noticia } from "@/types"
+import { BADGE_CLASSE } from "@/constants"
 
 function formatarData(iso: string) {
   const data = new Date(iso)
@@ -11,14 +12,6 @@ function formatarData(iso: string) {
   if (diffMin < 60) return `Há ${diffMin} min`
   if (diffMin < 1440) return `Há ${Math.floor(diffMin / 60)}h`
   return data.toLocaleDateString("pt-BR", { day: "numeric", month: "short" })
-}
-
-const BADGE_CLASSE: Record<string, string> = {
-  Política: "badge badge-politica",
-  Economia: "badge badge-economia",
-  Direitos: "badge badge-direitos",
-  Cultura:  "badge badge-cultura",
-  Saúde:    "badge badge-saude",
 }
 
 function Badge({ categoria }: { categoria: string }) {

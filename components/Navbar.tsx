@@ -44,7 +44,7 @@ export function Navbar() {
           <div className="w-portal" style={{ 
             display: "flex", justifyContent: "space-between", 
             alignItems: "center", padding: "5px 24px", 
-            fontSize: 12, color: "rgba(255,255,255,0.75)"
+            fontSize: 12, color: "rgba(255,255,255,0.75)" 
           }}>
             <span className="hidden md:block">
               {new Date().toLocaleDateString("pt-BR", { 
@@ -60,12 +60,12 @@ export function Navbar() {
 
         {/* ── Barra principal: hambúrguer | logo | busca ── */}
         <div style={{ background: "var(--azul)", padding: "10px 0" }}>
-          <div className="w-portal" style={{
+          <div className="w-portal" style={{ 
             display: "grid", 
             gridTemplateColumns: "1fr auto 1fr", 
             alignItems: "center", 
-            gap: 16,
-          }}>
+            gap: 16,}}
+            >
 
             {/* Esquerda: botão hambúrguer */}
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -75,9 +75,8 @@ export function Navbar() {
                 style={{ 
                   background: "rgba(255,255,255,0.12)", border: "none", cursor: "pointer", 
                   borderRadius: 4, padding: "7px 10px", display: "flex", 
-                  flexDirection: "column", gap: 5, transition: "background 0.2s"
-                }}
-              >
+                  flexDirection: "column", gap: 5, transition: "background 0.2s"}}
+                >
                 {[0,1,2].map(i => (
                   <span key={i} style={{ 
                     display: "block", width: 20, height: 2, background: "#fff", 
@@ -113,8 +112,8 @@ export function Navbar() {
               <button style={{ 
                 background: "rgba(255,255,255,0.12)", border: "none", cursor: "pointer", 
                 borderRadius: 4, padding: "7px 14px", display: "flex", 
-                alignItems: "center", gap: 7, transition: "background 0.2s"
-              }}>
+                alignItems: "center", gap: 7, transition: "background 0.2s"}}
+                >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2.5">
                   <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
                 </svg>
@@ -131,7 +130,7 @@ export function Navbar() {
           background: "var(--fundo-branco)", 
           borderBottom: "1px solid var(--borda)", 
           overflowX: "auto", 
-          scrollbarWidth: "none",
+          scrollbarWidth: "none" 
         }}>
           <div style={{ 
             display: "flex", 
@@ -166,14 +165,20 @@ export function Navbar() {
       )}
 
       {/* ── Gaveta lateral (drawer) ── */}
-      <div style={{ 
-        position: "fixed", top: 0, left: 0, bottom: 0, 
-        width: 300, background: "#fff", 
-        zIndex: 102, overflowY: "auto",
-        transform: menuAberto ? "translateX(0)" : "translateX(-100%)",
-        transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-        boxShadow: menuAberto ? "4px 0 24px rgba(0,0,0,0.15)" : "none", 
-      }}>
+      <div
+        role="dialog"
+        aria-modal={menuAberto ? "true" : undefined}
+        aria-hidden={!menuAberto}
+        inert={!menuAberto || undefined}
+        style={{
+          position: "fixed", top: 0, left: 0, bottom: 0,
+          width: 300, background: "#fff",
+          zIndex: 102, overflowY: "auto",
+          transform: menuAberto ? "translateX(0)" : "translateX(-100%)",
+          transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          boxShadow: menuAberto ? "4px 0 24px rgba(0,0,0,0.15)" : "none",
+          visibility: menuAberto ? "visible" : "hidden",
+        }}>
 
         {/* Cabeçalho da gaveta */}
         <div style={{ 
@@ -186,7 +191,7 @@ export function Navbar() {
           <button onClick={() => setMenuAberto(false)}
             style={{ background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", borderRadius: 4, padding: "4px 8px", color: "#fff", fontSize: 18, lineHeight: 1 }}>
               ✕
-            </button>
+          </button>
         </div>
 
         {/* Seção: Categorias */}
@@ -195,16 +200,16 @@ export function Navbar() {
             fontSize: 10, fontWeight: 700, textTransform: "uppercase", 
             letterSpacing: "0.12em", color: "var(--cinza-medio)", 
             padding: "10px 20px 6px" 
-          }}>
-            Categorias
+            }}>
+              Categorias
           </p>
           {CATEGORIAS.map(link => {
             const ativo = pathname === link.href
             return (
               <Link key={link.href} href={link.href} 
-                onClick={() => setMenuAberto(false)}
+              onClick={() => setMenuAberto(false)}
                 style={{ 
-                  display: "flex", alignItems: "center", gap: 10, 
+                  display: "flex", alignItems: "center", gap: 10,
                   padding: "11px 20px", 
                   fontSize: 14, fontWeight: ativo ? 700 : 500,
                   color: ativo ? "var(--azul)" : "var(--texto)", 
@@ -228,8 +233,8 @@ export function Navbar() {
             fontSize: 10, fontWeight: 700, textTransform: "uppercase", 
             letterSpacing: "0.12em", color: "var(--cinza-medio)", 
             padding: "10px 20px 6px" 
-          }}>
-            Institucional
+            }}>
+              Institucional
           </p>
           {INSTITUCIONAIS.map(link => {
             const ativo = pathname === link.href
@@ -252,7 +257,7 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Redes sociais na gaveta */}
+        {/* Redes sociais — agora com SocialIconsDrawer (ícones escuros) */}
         <div style={{ padding: "16px 20px", borderTop: "1px solid var(--borda)", marginTop: 8 }}>
           <p style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--cinza-medio)", marginBottom: 10 }}>
             Redes sociais

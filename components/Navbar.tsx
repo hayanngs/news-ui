@@ -169,7 +169,6 @@ export function Navbar() {
         role="dialog"
         aria-modal={menuAberto ? "true" : undefined}
         aria-hidden={!menuAberto}
-        inert={!menuAberto || undefined}
         style={{
           position: "fixed", top: 0, left: 0, bottom: 0,
           width: 300, background: "#fff",
@@ -178,7 +177,9 @@ export function Navbar() {
           transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           boxShadow: menuAberto ? "4px 0 24px rgba(0,0,0,0.15)" : "none",
           visibility: menuAberto ? "visible" : "hidden",
-        }}>
+          pointerEvents: menuAberto ? "auto" : "none",
+        }}
+      >
 
         {/* Cabeçalho da gaveta */}
         <div style={{ 

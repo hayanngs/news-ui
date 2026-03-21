@@ -133,7 +133,8 @@ export default async function UltimasNoticias({
 }: {
   searchParams: { pagina?: string }
 }) {
-  const paginaAtual = Math.max(1, parseInt(searchParams.pagina || "1", 10))
+  const parsed = Number(searchParams.pagina)
+  const paginaAtual = Number.isFinite(parsed) && parsed >= 1 ? Math.floor(parsed) : 1
 
   const [{ noticias, totalPaginas, totalElementos }, maisLidas] = await Promise.all([
     getUltimasNoticias(paginaAtual - 1, POR_PAGINA),

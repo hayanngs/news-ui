@@ -2,6 +2,10 @@
 // Tipos TypeScript do Portal de Notícias
 // ─────────────────────────────────────────────
 
+export interface category {
+  
+}
+
 export interface Noticia {
   id: number
   titulo: string

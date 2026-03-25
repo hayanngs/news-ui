@@ -6,7 +6,8 @@
 
 :root {
   /* Azul institucional */
-  --azul:          #006EAC;
+  --azul:  #0E2D50;
+  --azul-antigo:   #006EAC;
   --azul-escuro:   #004F7C;
   --azul-hover:    #005A8E;
   --azul-claro:    #E8F4FC;
@@ -55,14 +56,7 @@ h1, h2, h3, h4, h5 {
 a { color: inherit; text-decoration: none; }
 img { display: block; }
 
-/* ── Layout ── */
-.w-portal {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* ── Seção com título estilo G1 ── */
+/* ── Seção com título ── */
 .secao-titulo {
   display: flex;
   align-items: center;

@@ -51,7 +51,7 @@ export default function TermosDeUso() {
               </section>
             ))}
             <p style={{ fontSize: 12, color: "var(--cinza-medio)", marginTop: 8 }}>
-              Última atualização: {new Date().toLocaleDateString("pt-BR")} · Dúvidas? <a href="mailto:contato@portal.com.br" style={{ color: "var(--azul)" }}>contato@portal.com.br</a>
+              Última atualização: {new Date().toLocaleDateString("pt-BR")} · Dúvidas? <a href="mailto:contato@diariogoiano.com.br" style={{ color: "var(--azul)" }}>contato@diariogoiano.com.br</a>
             </p>
           </div>
         </div>

@@ -8,7 +8,7 @@ const secoes = [
   { titulo: "Cookies", conteudo: "Utilizamos cookies essenciais para o funcionamento do portal e cookies de analytics para entender o comportamento dos usuários. Você pode desativar cookies nas configurações do seu navegador, mas isso pode afetar a experiência de uso." },
   { titulo: "Seus direitos (LGPD)", conteudo: "Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), você tem direito de: acessar seus dados, corrigir informações incorretas, solicitar a exclusão de dados, revogar consentimentos e obter informações sobre o uso de seus dados." },
   { titulo: "Segurança dos dados", conteudo: "Adotamos medidas técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou destruição. Nenhum sistema é 100% seguro, mas nos comprometemos a notificar em caso de incidentes." },
-  { titulo: "Contato e encarregado", conteudo: "Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato pelo e-mail privacidade@portal.com.br. Respondemos em até 15 dias úteis, conforme exigido pela LGPD." },
+  { titulo: "Contato e encarregado", conteudo: "Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato pelo e-mail privacidade@diariogoiano.com.br. Respondemos em até 15 dias úteis, conforme exigido pela LGPD." },
 ]
 
 export default function Privacidade() {
@@ -51,7 +51,7 @@ export default function Privacidade() {
               </section>
             ))}
             <p style={{ fontSize: 12, color: "var(--cinza-medio)", marginTop: 8 }}>
-              Última atualização: {new Date().toLocaleDateString("pt-BR")} · <a href="mailto:privacidade@portal.com.br" style={{ color: "var(--azul)" }}>privacidade@portal.com.br</a>
+              Última atualização: {new Date().toLocaleDateString("pt-BR")} · <a href="mailto:privacidade@diariogoiano.com.br" style={{ color: "var(--azul)" }}>privacidade@diariogoiano.com.br</a>
             </p>
           </div>
         </div>

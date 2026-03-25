@@ -10,10 +10,7 @@ export function Footer() {
           {/* Logo + social */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-              <div style={{ width: 32, height: 32, background: "#fff", borderRadius: 3, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 18, color: "var(--azul)" }}>N</span>
-              </div>
-              <span style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 18, color: "#fff" }}>Portal Notícias</span>
+              <span style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 20, color: "#fff" }}>Diário Goiano</span>
             </div>
             <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 4 }}>Jornalismo independente.<br/>Goiás e Brasil.</p>
             <SocialIconsFooter />
@@ -55,16 +52,16 @@ export function Footer() {
           <div>
             <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>Contato</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "rgba(255,255,255,0.6)" }}>
-              <span>redacao@portal.com.br</span>
-              <span>contato@portal.com.br</span>
-              <span>privacidade@portal.com.br</span>
+              <span>redacao@diariogoiano.com.br</span>
+              <span>contato@diariogoiano.com.br</span>
+              <span>privacidade@diariogoiano.com.br</span>
             </div>
           </div>
         </div>
       </div>
       <div style={{ background: "#001f33", padding: "10px 0" }}>
         <div className="w-portal" style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "rgba(255,255,255,0.3)", flexWrap: "wrap", gap: 4 }}>
-          <span>© {new Date().getFullYear()} Portal Notícias. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} Diário Goiano. Todos os direitos reservados.</span>
           <div style={{ display: "flex", gap: 16 }}>
             <Link href="/termos" className="footer-link" style={{ fontSize: 11 }}>Termos de Uso</Link>
             <Link href="/privacidade" className="footer-link" style={{ fontSize: 11 }}>Privacidade</Link>

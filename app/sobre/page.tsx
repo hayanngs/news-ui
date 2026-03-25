@@ -4,7 +4,7 @@ import { getPaginaEstatica } from "@/lib/api"
 
 export const metadata: Metadata = {
   title: "Sobre",
-  description: "Conheça o Portal de Notícias, nossa missão e valores.",
+  description: "Conheça o Diário Goiano, nossa missão e valores.",
 }
 
 export default async function PaginaSobre() {
@@ -35,7 +35,7 @@ export default async function PaginaSobre() {
                 Nossa missão
               </h2>
               <p style={{ fontSize: "1.05rem", color: "var(--cinza-texto)", lineHeight: 1.8 }}>
-                O Portal de Notícias nasceu com um propósito claro: oferecer jornalismo
+                O Diário Goiano nasceu com um propósito claro: oferecer jornalismo
                 independente, rigoroso e comprometido com a verdade. Em um cenário de
                 desinformação crescente, acreditamos que a imprensa livre é um pilar
                 indispensável da democracia.
@@ -73,10 +73,10 @@ export default async function PaginaSobre() {
                 História
               </h2>
               <p style={{ fontSize: "1.05rem", color: "var(--cinza-texto)", lineHeight: 1.8 }}>
-                Fundado em 2024, o Portal surgiu da iniciativa de jornalistas que acreditam
+                Fundado em 2026, o Diário Goiano surgiu da iniciativa de pessoas que acreditam
                 no poder da informação para transformar a sociedade. Com uma equipe enxuta
                 e comprometida, publicamos notícias verificadas sobre política, economia,
-                direitos e cultura.
+                direitos, cultura e sociedade no geral.
               </p>
             </section>
 
@@ -91,12 +91,12 @@ export default async function PaginaSobre() {
               <p style={{ fontSize: 14, color: "var(--cinza-texto)", marginBottom: 14 }}>
                 Sugestões de pauta, denúncias e críticas são sempre bem-vindas.
               </p>
-              <a href="mailto:contato@portal.com.br" style={{
+              <a href="mailto:contato@diariogoiano.com.br" style={{
                 display: "inline-block", background: "var(--azul)", color: "#fff",
                 fontSize: 13, fontWeight: 600, padding: "8px 18px", borderRadius: 3,
                 textDecoration: "none"
               }}>
-                contato@portal.com.br
+                contato@diariogoiano.com.br
               </a>
             </section>
           </div>

@@ -1,4 +1,4 @@
-# Portal de Notícias — Frontend (Next.js 14)
+# Diário Goiano — Frontend (Next.js 14)
 
 ## Como rodar localmente
 

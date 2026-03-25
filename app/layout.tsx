@@ -12,13 +12,13 @@ import { Footer } from "@/components/Footer"
 // metadata exportado → Next.js injeta automaticamente nas <meta> tags
 export const metadata: Metadata = {
   title: {
-    default: "Portal de Notícias",
-    // Em subpáginas: "Título da Notícia | Portal de Notícias"
-    template: "%s | Portal de Notícias",
+    default: "Diário Goiano",
+    // Em subpáginas: "Título da Notícia | Diário Goiano"
+    template: "%s | Diário Goiano",
   },
   description: "As últimas notícias com jornalismo independente e de qualidade.",
   openGraph: {
-    siteName: "Portal de Notícias",
+    siteName: "Diário Goiano",
     locale: "pt_BR",
     type: "website",
   },

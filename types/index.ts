@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────
-// Tipos TypeScript do Portal de Notícias
+// Tipos TypeScript do Diário Goiano
 // ─────────────────────────────────────────────
 
 export interface category {

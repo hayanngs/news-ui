@@ -40,8 +40,8 @@ export function Navbar() {
       <header style={{ fontFamily: "var(--fonte-ui)", position: "sticky", top: 0, zIndex: 100 }}>
 
         {/* ── Faixa topo: data + redes sociais ── */}
-        <div style={{ background: "var(--azul-escuro)" }}>
-          <div className="w-portal" style={{ 
+        <div style={{ background: "var(--azul)" }}>
+          <div className="w-portal border-b border-transparent [border-image:linear-gradient(to_right,transparent,rgba(255,255,255,0.35),transparent)_1]" style={{ 
             display: "flex", justifyContent: "space-between", 
             alignItems: "center", padding: "5px 24px", 
             fontSize: 12, color: "rgba(255,255,255,0.75)" 
@@ -90,18 +90,9 @@ export function Navbar() {
             {/* Centro: logo */}
             <Link href="/" style={{ textDecoration: "none", display: "flex", justifyContent: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ 
-                  width: 38, height: 38, background: "#fff", borderRadius: 4, 
-                  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 
-                }}>
-                  <span style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 20, color: "var(--azul)", lineHeight: 1 }}>N</span>
-                </div>
                 <div>
-                  <div style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 20, color: "#fff", lineHeight: 1, whiteSpace: "nowrap" }}>
-                    Portal Notícias
-                  </div>
-                  <div style={{ fontSize: 10, color: "rgba(255,255,255,0.65)", letterSpacing: "0.15em", marginTop: 2 }}>
-                    GOIÁS
+                  <div style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 28, color: "#fff", lineHeight: 1, whiteSpace: "nowrap" }}>
+                    Diário Goiano
                   </div>
                 </div>
               </div>
@@ -136,6 +127,7 @@ export function Navbar() {
             display: "flex", 
             justifyContent: "center", 
             minWidth: "max-content", 
+            maxHeight: "40px",
             margin: "0 auto", 
             padding: "0 16px",
           }}>

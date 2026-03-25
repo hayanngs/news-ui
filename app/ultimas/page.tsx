@@ -145,7 +145,7 @@ export default async function UltimasNoticias({
     <>
       <div className="pagina-header">
         <div className="pagina-header-inner">
-          <p className="label">Portal Notícias</p>
+          <p className="label">Diário Goiano</p>
           <h1>Últimas Notícias</h1>
           <p>Página {paginaAtual}</p>
         </div>

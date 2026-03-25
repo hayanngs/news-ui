@@ -1427,10 +1427,10 @@ const NOTICIAS_MOCK: Noticia[] = [
 
 
 const PESSOAS_MOCK: Pessoa[] = [
-  { id: 1, nome: "Ana Souza", cargo: "Editora-chefe", bio: "15 anos de experiência em jornalismo político e investigativo. Ex-correspondente internacional pela América Latina.", fotoUrl: "", email: "ana@portal.com.br", linkedin: "" },
-  { id: 2, nome: "Carlos Lima", cargo: "Editor de Economia", bio: "Especializado em cobertura econômica e mercado financeiro. MBA em Finanças pela FGV e ex-repórter do Valor Econômico.", fotoUrl: "", email: "carlos@portal.com.br", linkedin: "" },
-  { id: 3, nome: "Maria Santos", cargo: "Jornalista", bio: "Cobre pautas sociais, direitos humanos e políticas públicas há 8 anos. Prêmio Vladimir Herzog de Anistia e Direitos Humanos 2022.", fotoUrl: "", email: "maria@portal.com.br", linkedin: "" },
-  { id: 4, nome: "Pedro Alves", cargo: "Repórter Multimídia", bio: "Fotojornalista e repórter. Especializado em cultura, meio ambiente e esporte. Fotógrafo oficial do Goiás Esporte Clube por 3 anos.", fotoUrl: "", email: "pedro@portal.com.br", linkedin: "" },
+  { id: 1, nome: "Ana Souza", cargo: "Editora-chefe", bio: "15 anos de experiência em jornalismo político e investigativo. Ex-correspondente internacional pela América Latina.", fotoUrl: "", email: "ana@diariogoiano.com.br", linkedin: "" },
+  { id: 2, nome: "Carlos Lima", cargo: "Editor de Economia", bio: "Especializado em cobertura econômica e mercado financeiro. MBA em Finanças pela FGV e ex-repórter do Valor Econômico.", fotoUrl: "", email: "carlos@diariogoiano.com.br", linkedin: "" },
+  { id: 3, nome: "Maria Santos", cargo: "Jornalista", bio: "Cobre pautas sociais, direitos humanos e políticas públicas há 8 anos. Prêmio Vladimir Herzog de Anistia e Direitos Humanos 2022.", fotoUrl: "", email: "maria@diariogoiano.com.br", linkedin: "" },
+  { id: 4, nome: "Pedro Alves", cargo: "Repórter Multimídia", bio: "Fotojornalista e repórter. Especializado em cultura, meio ambiente e esporte. Fotógrafo oficial do Goiás Esporte Clube por 3 anos.", fotoUrl: "", email: "pedro@diariogoiano.com.br", linkedin: "" },
 ]
 
 // ══════════════════════════════════════════════

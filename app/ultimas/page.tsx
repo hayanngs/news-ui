@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { getUltimasNoticias, getMaisLidas } from "@/lib/api"
-import { Noticia } from "@/types"
+import { News } from "@/types"
 import { CardLista } from "@/components/CardNoticia"
 import { BADGE_CLASSE } from "@/constants"
 
@@ -18,7 +18,7 @@ function formatarData(iso: string) {
 }
 
 // Card grande horizontal — exclusivo desta página
-function CardNoticiaLista({ noticia }: { noticia: Noticia }) {
+function CardNoticiaLista({ noticia }: { noticia: News }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block">
       <article style={{
@@ -29,8 +29,8 @@ function CardNoticiaLista({ noticia }: { noticia: Noticia }) {
           position: "relative", width: 180, height: 120,
           borderRadius: 4, overflow: "hidden", flexShrink: 0, background: "#ddd"
         }}>
-          {noticia.imagemUrl
-            ? <Image src={noticia.imagemUrl} alt={noticia.titulo} fill
+          {noticia.thumbnailUrl
+            ? <Image src={noticia.thumbnailUrl} alt={noticia.title} fill
                 style={{ objectFit: "cover", transition: "transform 0.4s" }}
                 className="group-hover:scale-105" />
             : <div style={{ position: "absolute", inset: 0, background: "var(--azul)" }} />
@@ -38,23 +38,23 @@ function CardNoticiaLista({ noticia }: { noticia: Noticia }) {
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ marginBottom: 6 }}>
-            <span className={BADGE_CLASSE[noticia.categoria] || "badge"}>{noticia.categoria}</span>
+            <span className={BADGE_CLASSE[noticia.category.name] || "badge"}>{noticia.category.name}</span>
           </div>
           <h2 style={{
-            fontFamily: "var(--fonte-titulo)", fontWeight: 600,
+            fontFamily: "var(--fonte-title)", fontWeight: 600,
             fontSize: "1rem", lineHeight: 1.35, color: "var(--texto)", marginBottom: 6
           }}
           className="group-hover:text-[var(--azul)] transition-colors line-clamp-2">
-            {noticia.titulo}
+            {noticia.title}
           </h2>
           <p style={{ fontSize: 13, color: "var(--cinza-texto)", lineHeight: 1.5, marginBottom: 8 }}
              className="line-clamp-2 hidden sm:block">
-            {noticia.resumo}
+            {noticia.summary}
           </p>
           <div style={{ display: "flex", gap: 8, fontSize: 12, color: "var(--cinza-medio)" }}>
-            <span style={{ fontWeight: 600, color: "var(--cinza-texto)" }}>{noticia.autor}</span>
+            <span style={{ fontWeight: 600, color: "var(--cinza-texto)" }}>{noticia.author}</span>
             <span>·</span>
-            <time className="capitalize">{formatarData(noticia.publicadoEm)}</time>
+            <time className="capitalize">{formatarData(noticia.publishedAt)}</time>
           </div>
         </div>
       </article>

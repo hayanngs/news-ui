@@ -2,23 +2,24 @@
 // Tipos TypeScript do Diário Goiano
 // ─────────────────────────────────────────────
 
-export interface category {
-  
+export interface Category {
+  name: string    // "Política"
+  slug: string    // "politica"
+  color?: string    // "#C0392B"
 }
 
-export interface Noticia {
+export interface News {
   id: number
-  titulo: string
+  title: string
   slug: string          // ex: "governo-anuncia-novo-programa"
-  resumo: string        // texto curto para o card
-  conteudo: string      // HTML completo da notícia
-  imagemUrl: string
-  categoria: string     // "Política", "Economia", etc.
-  href: string          // "/politica", "/economia", etc.
-  autor: string
-  publicadoEm: string   // ISO 8601: "2024-03-15T14:30:00"
-  publicado: boolean
-  destaque: boolean     // aparece maior na home
+  summary: string        // texto curto para o card
+  content: string      // HTML completo da notícia
+  thumbnailUrl: string
+  category: Category     // "Política", "Economia", etc.
+  author: string
+  publishedAt: string   // ISO 8601: "2024-03-15T14:30:00"
+  published: boolean
+  highlight: boolean     // aparece maior na home
 }
 
 export interface Pessoa {

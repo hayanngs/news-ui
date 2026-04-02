@@ -3,29 +3,29 @@ import { getUltimasNoticias, getNoticiasPorCategoria, getNoticiasDestaque, getMa
 import { CardLista, CardGrid, CardHero } from "@/components/CardNoticia"
 import Link from "next/link"
 import Image from "next/image"
-import { Noticia } from "@/types"
+import { News } from "@/types"
 import { BADGE_CLASSE } from "@/constants"
 
-function CardDestaqueSec({ noticia }: { noticia: Noticia }) {
+function CardDestaqueSec({ noticia }: { noticia: News }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block" style={{ flex: 1, minWidth: 0 }}>
       <article style={{ position: "relative", height: 185, borderRadius: 4, overflow: "hidden", background: "#1a1a2e" }}>
-        {noticia.imagemUrl && (
-          <Image src={noticia.imagemUrl} alt={noticia.titulo} fill
+        {noticia.thumbnailUrl && (
+          <Image src={noticia.thumbnailUrl} alt={noticia.title} fill
             style={{ objectFit: "cover", opacity: 0.72, transition: "transform 0.5s" }}
             className="group-hover:scale-105" />
         )}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "14px" }}>
-          <span className={BADGE_CLASSE[noticia.categoria] || "badge"} style={{ marginBottom: 6, display: "inline-block" }}>
-            {noticia.categoria}
+          <span className={BADGE_CLASSE[noticia.category.name] || "badge"} style={{ marginBottom: 6, display: "inline-block" }}>
+            {noticia.category.name}
           </span>
           <h3 style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 600, fontSize: "0.9rem", color: "#fff", lineHeight: 1.3 }}
               className="group-hover:underline decoration-white underline-offset-2 line-clamp-3">
-            {noticia.titulo}
+            {noticia.title}
           </h3>
           <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 11, marginTop: 5 }}>
-            {noticia.autor} · <time>{new Date(noticia.publicadoEm).toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}</time>
+            {noticia.author} · <time>{new Date(noticia.publishedAt).toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}</time>
           </p>
         </div>
       </article>
@@ -51,11 +51,11 @@ export default async function PaginaInicial() {
   const [destaques, { noticias: ultimas }, politica, economia, esporte, entretenimento, seguranca, maisLidas] = await Promise.all([
     getNoticiasDestaque(),
     getUltimasNoticias(0, 20),
-    getNoticiasPorCategoria("Política"),
-    getNoticiasPorCategoria("Economia"),
-    getNoticiasPorCategoria("Esporte"),
-    getNoticiasPorCategoria("Entretenimento"),
-    getNoticiasPorCategoria("Segurança"),
+    getNoticiasPorCategoria("politica"),
+    getNoticiasPorCategoria("economia"),
+    getNoticiasPorCategoria("esporte"),
+    getNoticiasPorCategoria("entretenimento"),
+    getNoticiasPorCategoria("seguranca"),
     getMaisLidas(),
   ])
 

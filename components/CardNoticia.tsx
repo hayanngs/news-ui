@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Noticia } from "@/types"
+import { News } from "@/types"
 import { BADGE_CLASSE } from "@/constants"
 
 function formatarData(iso: string) {
@@ -19,27 +19,27 @@ function Badge({ categoria }: { categoria: string }) {
 }
 
 // Hero — altura FIXA de 380px, não ocupa a tela toda
-export function CardHero({ noticia }: { noticia: Noticia }) {
+export function CardHero({ noticia }: { noticia: News }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block" style={{ height: "100%" }}>
       <article style={{ position: "relative", height: 380, borderRadius: 4, overflow: "hidden", background: "#1a1a2e" }}>
-        {noticia.imagemUrl && (
-          <Image src={noticia.imagemUrl} alt={noticia.titulo} fill
+        {noticia.thumbnailUrl && (
+          <Image src={noticia.thumbnailUrl} alt={noticia.title} fill
             style={{ objectFit: "cover", opacity: 0.75, transition: "transform 0.5s" }}
             className="group-hover:scale-105" priority />
         )}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 18px" }}>
-          <Badge categoria={noticia.categoria} />
-          <h2 style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 600, fontSize: "1.3rem", color: "#fff", lineHeight: 1.3, marginTop: 8 }}
+          <Badge categoria={noticia.category.name} />
+          <h2 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "1.3rem", color: "#fff", lineHeight: 1.3, marginTop: 8 }}
               className="group-hover:underline decoration-white underline-offset-2">
-            {noticia.titulo}
+            {noticia.title}
           </h2>
           <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 13, marginTop: 8 }}>
-            {noticia.resumo}
+            {noticia.summary}
           </p>
           <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 8 }}>
-            {noticia.autor} · <time>{formatarData(noticia.publicadoEm)}</time>
+            {noticia.author} · <time>{formatarData(noticia.publishedAt)}</time>
           </p>
         </div>
       </article>
@@ -48,7 +48,7 @@ export function CardHero({ noticia }: { noticia: Noticia }) {
 }
 
 // Destaque secundário — altura fixa de 122px cada (3 = 380px total)
-export function CardDestaque({ noticia }: { noticia: Noticia }) {
+export function CardDestaque({ noticia }: { noticia: News }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block" style={{ height: "100%" }}>
       <article style={{
@@ -58,20 +58,20 @@ export function CardDestaque({ noticia }: { noticia: Noticia }) {
       }}>
         {/* Imagem à esquerda */}
         <div style={{ position: "relative", width: 110, flexShrink: 0, background: "#ddd" }}>
-          {noticia.imagemUrl
-            ? <Image src={noticia.imagemUrl} alt={noticia.titulo} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} className="group-hover:scale-105" />
+          {noticia.thumbnailUrl
+            ? <Image src={noticia.thumbnailUrl} alt={noticia.title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} className="group-hover:scale-105" />
             : <div style={{ position: "absolute", inset: 0, background: "var(--azul)" }} />
           }
         </div>
         {/* Texto à direita */}
         <div style={{ padding: "10px 12px", display: "flex", flexDirection: "column", gap: 5, flex: 1, minWidth: 0 }}>
-          <Badge categoria={noticia.categoria} />
-          <h3 style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.3, color: "var(--texto)" }}
+          <Badge categoria={noticia.category.name} />
+          <h3 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.3, color: "var(--texto)" }}
               className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
-            {noticia.titulo}
+            {noticia.title}
           </h3>
           <time style={{ fontSize: 11, color: "var(--cinza-medio)", marginTop: "auto" }}>
-            {formatarData(noticia.publicadoEm)}
+            {formatarData(noticia.publishedAt)}
           </time>
         </div>
       </article>
@@ -80,28 +80,28 @@ export function CardDestaque({ noticia }: { noticia: Noticia }) {
 }
 
 // Lista (com miniatura e número opcional)
-export function CardLista({ noticia, index }: { noticia: Noticia; index?: number }) {
+export function CardLista({ noticia, index }: { noticia: News; index?: number }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block">
       <article style={{ display: "flex", gap: 10, padding: "11px 0", borderBottom: "1px solid var(--borda)", alignItems: "flex-start" }}>
         {index !== undefined && (
-          <span style={{ fontFamily: "var(--fonte-titulo)", fontSize: 20, fontWeight: 700, color: "var(--borda)", lineHeight: 1, flexShrink: 0, minWidth: 22, paddingTop: 2 }}>
+          <span style={{ fontFamily: "var(--fonte-title)", fontSize: 20, fontWeight: 700, color: "var(--borda)", lineHeight: 1, flexShrink: 0, minWidth: 22, paddingTop: 2 }}>
             {String(index + 1).padStart(2, "0")}
           </span>
         )}
         <div style={{ flex: 1, minWidth: 0 }}>
-          <h3 style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.35, color: "var(--texto)" }}
+          <h3 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.35, color: "var(--texto)" }}
               className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
-            {noticia.titulo}
+            {noticia.title}
           </h3>
           <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 5 }}>
-            <Badge categoria={noticia.categoria} />
-            <time style={{ fontSize: 11, color: "var(--cinza-medio)" }}>{formatarData(noticia.publicadoEm)}</time>
+            <Badge categoria={noticia.category.name} />
+            <time style={{ fontSize: 11, color: "var(--cinza-medio)" }}>{formatarData(noticia.publishedAt)}</time>
           </div>
         </div>
-        {noticia.imagemUrl && (
+        {noticia.thumbnailUrl && (
           <div style={{ position: "relative", width: 68, height: 52, borderRadius: 3, overflow: "hidden", flexShrink: 0 }}>
-            <Image src={noticia.imagemUrl} alt="" fill style={{ objectFit: "cover" }} />
+            <Image src={noticia.thumbnailUrl} alt="" fill style={{ objectFit: "cover" }} />
           </div>
         )}
       </article>
@@ -110,24 +110,24 @@ export function CardLista({ noticia, index }: { noticia: Noticia; index?: number
 }
 
 // Grid 4 colunas
-export function CardGrid({ noticia }: { noticia: Noticia }) {
+export function CardGrid({ noticia }: { noticia: News }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block">
       <article style={{ background: "#fff", borderRadius: 4, overflow: "hidden", border: "1px solid var(--borda)" }}>
         <div style={{ position: "relative", aspectRatio: "16/9", background: "#ddd" }}>
-          {noticia.imagemUrl
-            ? <Image src={noticia.imagemUrl} alt={noticia.titulo} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} className="group-hover:scale-105" />
+          {noticia.thumbnailUrl
+            ? <Image src={noticia.thumbnailUrl} alt={noticia.title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} className="group-hover:scale-105" />
             : <div style={{ position: "absolute", inset: 0, background: "var(--azul)" }} />
           }
         </div>
         <div style={{ padding: "10px 12px 12px" }}>
-          <Badge categoria={noticia.categoria} />
-          <h3 style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 600, fontSize: "0.85rem", lineHeight: 1.35, marginTop: 6, color: "var(--texto)" }}
+          <Badge categoria={noticia.category.name} />
+          <h3 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "0.85rem", lineHeight: 1.35, marginTop: 6, color: "var(--texto)" }}
               className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
-            {noticia.titulo}
+            {noticia.title}
           </h3>
           <time style={{ fontSize: 11, color: "var(--cinza-medio)", display: "block", marginTop: 5 }}>
-            {formatarData(noticia.publicadoEm)}
+            {formatarData(noticia.publishedAt)}
           </time>
         </div>
       </article>

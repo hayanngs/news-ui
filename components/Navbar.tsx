@@ -91,8 +91,8 @@ export function Navbar() {
             <Link href="/" style={{ textDecoration: "none", display: "flex", justifyContent: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <div>
-                  <div style={{ fontFamily: "var(--fonte-titulo)", fontWeight: 700, fontSize: 28, color: "#fff", lineHeight: 1, whiteSpace: "nowrap" }}>
-                    Diário Goiano
+                  <div style={{ fontFamily: "var(--fonte-titulo)", fontSize: 28, color: "#fff", lineHeight: 1, whiteSpace: "nowrap" }}>
+                    Diário <strong style={{fontWeight: 700}}>Goiano</strong>
                   </div>
                 </div>
               </div>

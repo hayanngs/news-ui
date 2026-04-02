@@ -3,6 +3,6 @@ import { getNoticiasPorCategoria } from "@/lib/api"
 import { PaginaCategoria } from "@/components/PaginaCategoria"
 export const metadata: Metadata = { title: "Esporte" }
 export default async function Esporte() {
-  const noticias = await getNoticiasPorCategoria("Esporte")
+  const noticias = await getNoticiasPorCategoria("esporte")
   return <PaginaCategoria titulo="Esporte" descricao="Futebol, olimpíadas e muito mais" noticias={noticias} cor="var(--cat-esporte)" />
 }

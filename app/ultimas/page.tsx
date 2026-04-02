@@ -21,13 +21,13 @@ function formatarData(iso: string) {
 function CardNoticiaLista({ noticia }: { noticia: News }) {
   return (
     <Link href={`/noticias/${noticia.slug}`} className="group block">
-      <article style={{
-        display: "flex", gap: 16, padding: "16px 0",
+      <article className="flex flex-col sm:flex-row gap-3 sm:gap-4" style={{
+        padding: "16px 0",
         borderBottom: "1px solid var(--borda)", alignItems: "flex-start"
       }}>
-        <div style={{
-          position: "relative", width: 180, height: 120,
-          borderRadius: 4, overflow: "hidden", flexShrink: 0, background: "#ddd"
+        <div className="relative w-full sm:w-[180px] rounded overflow-hidden flex-shrink-0" style={{
+          aspectRatio: "16/9",
+          background: "#ddd"
         }}>
           {noticia.thumbnailUrl
             ? <Image src={noticia.thumbnailUrl} alt={noticia.title} fill
@@ -48,7 +48,7 @@ function CardNoticiaLista({ noticia }: { noticia: News }) {
             {noticia.title}
           </h2>
           <p style={{ fontSize: 13, color: "var(--cinza-texto)", lineHeight: 1.5, marginBottom: 8 }}
-             className="line-clamp-2 hidden sm:block">
+             className="line-clamp-2">
             {noticia.summary}
           </p>
           <div style={{ display: "flex", gap: 8, fontSize: 12, color: "var(--cinza-medio)" }}>
@@ -152,12 +152,11 @@ export default async function UltimasNoticias({
       </div>
 
       <div className="w-portal" style={{ paddingBottom: 60 }}>
-        <div style={{ display: "grid", gap: 24, alignItems: "start" }}
-             className="md:grid-cols-[1fr_280px]">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6" style={{ alignItems: "start" }}>
 
           {/* ── Lista principal ── */}
           <div>
-            <div style={{ background: "#fff", border: "1px solid var(--borda)", borderRadius: 4, padding: "0 20px" }}>
+            <div className="bg-white border border-[var(--borda)] rounded px-4 sm:px-5">
               {/* Linha azul superior */}
               <div style={{ height: 3, background: "var(--azul)", marginBottom: 0 }} />
 
@@ -178,7 +177,7 @@ export default async function UltimasNoticias({
           </div>
 
           {/* ── Sidebar: Mais lidas ── */}
-          <aside style={{ position: "sticky", top: 150 }}>
+          <aside className="md:sticky md:top-[150px]">
             <div style={{ background: "#fff", border: "1px solid var(--borda)", borderRadius: 4, overflow: "hidden" }}>
               <div style={{
                 background: "var(--azul)", padding: "10px 16px",

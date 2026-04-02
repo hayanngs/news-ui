@@ -57,33 +57,34 @@ export default async function PaginaNoticia({ params }: Props) {
           <span className="line-clamp-1" style={{ color: "var(--cinza-medio)" }}>{noticia.title}</span>
         </nav>
 
-        <div style={{ display: "grid", gap: 32, alignItems: "start" }} className="md:grid-cols-[1fr_300px]">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-8" style={{ alignItems: "start" }}>
 
           {/* ── ARTIGO ── */}
           <article style={{ background: "#fff", borderRadius: 4, border: "1px solid var(--borda)", overflow: "hidden" }}>
 
             {/* Cabeçalho do artigo */}
-            <div style={{ padding: "28px 32px 24px" }}>
+            <div className="p-5 sm:p-7 pb-5 sm:pb-6">
               <span className={BADGE_CLASSE[noticia.category.name] || "badge"} style={{ marginBottom: 14, display: "inline-block" }}>
                 {noticia.category.name}
               </span>
 
-              <h1 style={{ fontFamily: "var(--fonte-titulo)", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, lineHeight: 1.25, color: "var(--texto)", marginBottom: 16 }}>
+              <h1 style={{ fontFamily: "var(--fonte-titulo)", fontSize: "clamp(1.3rem, 3vw, 2rem)", fontWeight: 700, lineHeight: 1.25, color: "var(--texto)", marginBottom: 16 }}>
                 {noticia.title}
               </h1>
 
-              <p style={{ fontSize: "1.1rem", color: "var(--cinza-texto)", lineHeight: 1.7, borderLeft: "3px solid var(--azul)", paddingLeft: 14, marginBottom: 20, fontStyle: "italic" }}>
+              <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)", color: "var(--cinza-texto)", lineHeight: 1.7, borderLeft: "3px solid var(--azul)", paddingLeft: 14, marginBottom: 20, fontStyle: "italic" }}>
                 {noticia.summary}
               </p>
 
-              <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 16, borderTop: "1px solid var(--borda)", fontSize: 13, color: "var(--cinza-texto)" }}>
+              <div className="flex flex-wrap items-center gap-3 pt-4" style={{ borderTop: "1px solid var(--borda)", fontSize: 13, color: "var(--cinza-texto)" }}>
                 <div style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--azul)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: 14, flexShrink: 0 }}>
                   {noticia.author.charAt(0)}
                 </div>
                 <div>
                   <span style={{ fontWeight: 600, color: "var(--texto)" }}>{noticia.author}</span>
-                  <span style={{ margin: "0 8px", color: "var(--borda)" }}>·</span>
-                  <time className="capitalize">{formatarData(noticia.publishedAt)}</time>
+                  <span className="hidden sm:inline" style={{ margin: "0 8px", color: "var(--borda)" }}>·</span>
+                  <br className="sm:hidden" />
+                  <time className="capitalize" style={{ fontSize: 12 }}>{formatarData(noticia.publishedAt)}</time>
                 </div>
               </div>
             </div>
@@ -96,7 +97,7 @@ export default async function PaginaNoticia({ params }: Props) {
             )}
 
             {/* Conteúdo */}
-            <div style={{ padding: "28px 32px" }}>
+            <div className="p-5 sm:p-7">
               <div className="conteudo-noticia"
                    dangerouslySetInnerHTML={{ __html: noticia.content }} />
               <BotoesCompartilhar titulo={noticia.title} />
@@ -104,7 +105,7 @@ export default async function PaginaNoticia({ params }: Props) {
           </article>
 
           {/* ── SIDEBAR ── */}
-          <aside style={{ position: "sticky", top: 150 }}>
+          <aside className="md:sticky md:top-[150px]">
             <div style={{ background: "#fff", border: "1px solid var(--borda)", borderRadius: 4, overflow: "hidden" }}>
               <div style={{ background: "var(--azul)", padding: "10px 16px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
                 Leia também

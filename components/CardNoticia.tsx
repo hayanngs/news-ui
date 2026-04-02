@@ -37,8 +37,8 @@ export function CardHero({noticia}: { noticia: News }) {
   return (
     <NoticiaLink slug={noticia.slug} className="h-full">
       <article
-        className="relative overflow-hidden rounded"
-        style={{height: 380, background: "#1a1a2e"}}
+        className="relative overflow-hidden rounded h-[280px] sm:h-[340px] md:h-[380px]"
+        style={{background: "#1a1a2e"}}
       >
         {noticia.thumbnailUrl && (
           <Image
@@ -106,7 +106,7 @@ export function CardDestaque({noticia}: { noticia: News }) {
         }}
       >
         {/* Imagem à esquerda */}
-        <div className="relative shrink-0" style={{width: 110, background: "#ddd"}}>
+        <div className="relative shrink-0 w-[90px] sm:w-[110px]" style={{background: "#ddd"}}>
           {noticia.thumbnailUrl ? (
             <Image
               src={noticia.thumbnailUrl}

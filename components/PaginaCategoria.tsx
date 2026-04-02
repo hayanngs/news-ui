@@ -156,7 +156,7 @@ export function PaginaCategoria({ titulo, descricao, noticias, cor = "var(--azul
     <>
       <div style={{ background: cor, padding: "28px 0", marginBottom: 32 }}>
         <div className="w-portal">
-          <h1 style={{ fontFamily: "var(--fonte-titulo)", fontSize: "2rem", fontWeight: 700, color: "#fff", marginBottom: 4 }}>
+          <h1 style={{ fontFamily: "var(--fonte-titulo)", fontSize: "clamp(1.4rem, 4vw, 2rem)", fontWeight: 700, color: "#fff", marginBottom: 4 }}>
             {titulo}
           </h1>
           {descricao && (
@@ -171,13 +171,7 @@ export function PaginaCategoria({ titulo, descricao, noticias, cor = "var(--azul
             <p style={{ fontSize: "1.1rem" }}>Nenhuma notícia encontrada nesta categoria.</p>
           </div>
         ) : (
-          /* destaque ocupa 62% da largura, coluna lateral 38% */
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "68% 31%",
-            gap: 12,
-            alignItems: "stretch",
-          }}>
+          <div className="grid grid-cols-1 md:grid-cols-[68%_31%] gap-3" style={{ alignItems: "stretch" }}>
             <CardDestaquePrincipal noticia={principal} />
 
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -195,11 +189,7 @@ export function PaginaCategoria({ titulo, descricao, noticias, cor = "var(--azul
                 Mais notícias
               </span>
             </div>
-            <div style={{
-              display: "grid", gap: 14,
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gridAutoRows: "1fr",
-            }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" style={{ gridAutoRows: "1fr" }}>
               {restantes.slice(4).map(n => (
                 <CardGrade key={n.id} noticia={n} />
               ))}

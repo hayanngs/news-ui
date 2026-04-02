@@ -113,7 +113,7 @@ export function Footer() {
             fontSize: 11,
             color: "rgba(255,255,255,0.3)",
             flexWrap: "wrap",
-            gap: 4,
+            gap: 8,
           }}
         >
           <span>© {ano} Diário Goiano. Todos os direitos reservados.</span>

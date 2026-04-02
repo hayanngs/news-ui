@@ -229,11 +229,13 @@ export function Navbar() {
         {/* ── Barra de categorias ── */}
         <nav
           aria-label="Categorias"
+          className="categorias-scroll-wrapper"
           style={{
             background: "var(--fundo-branco)",
             borderBottom: "1px solid var(--borda)",
             overflowX: "auto",
             scrollbarWidth: "none",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           <div

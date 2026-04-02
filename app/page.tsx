@@ -173,9 +173,9 @@ export default async function PaginaInicial() {
         {/* ── BLOCO DE DESTAQUES ── */}
         {hero && (
           <section style={{marginBottom: 24}}>
-            <div style={{display: "grid", gridTemplateColumns: "2fr 1fr", gap: 6}}>
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-2 md:gap-[6px]">
               <CardHero noticia={hero}/>
-              <div style={{display: "flex", flexDirection: "column", gap: 6}}>
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-[6px]">
                 {sec1 && <CardDestaqueSec noticia={sec1}/>}
                 {sec2 && <CardDestaqueSec noticia={sec2}/>}
               </div>
@@ -185,15 +185,15 @@ export default async function PaginaInicial() {
 
         {/* ── LAYOUT: coluna principal + sidebar ── */}
         <div
-          className="md:grid-cols-[1fr_300px]"
-          style={{display: "grid", gap: 24, alignItems: "start"}}
+          className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-6"
+          style={{alignItems: "start"}}
         >
           {/* COLUNA PRINCIPAL */}
           <div>
             {/* MAIS NOTÍCIAS — grade */}
             <section style={{marginBottom: 24}}>
               <TituloSecao label="Mais notícias" href="/ultimas"/>
-              <div className="grid-cols-2 md:grid-cols-3" style={{display: "grid", gap: 14}}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
                 {ultimas.slice(0, 6).map((n, i) => (
                   <div key={n.id} className="fade-up" style={{animationDelay: `${i * 0.05}s`}}>
                     <CardGrid noticia={n}/>

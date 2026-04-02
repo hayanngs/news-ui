@@ -1,140 +1,267 @@
-// components/CardNoticia.tsx — cards corrigidos com altura controlada
+// components/CardNoticia.tsx
 
 import Link from "next/link"
 import Image from "next/image"
-import { News } from "@/types"
-import { BADGE_CLASSE } from "@/constants"
+import type {News} from "@/types"
+import {BADGE_CLASSE} from "@/constants"
+import {formatarDataRelativa} from "@/lib/utils"
 
-function formatarData(iso: string) {
-  const data = new Date(iso)
-  const agora = new Date()
-  const diffMin = Math.floor((agora.getTime() - data.getTime()) / 60000)
-  if (diffMin < 60) return `Há ${diffMin} min`
-  if (diffMin < 1440) return `Há ${Math.floor(diffMin / 60)}h`
-  return data.toLocaleDateString("pt-BR", { day: "numeric", month: "short" })
-}
+/* ── Subcomponentes internos ── */
 
-function Badge({ categoria }: { categoria: string }) {
-  return <span className={BADGE_CLASSE[categoria] || "badge"}>{categoria}</span>
-}
-
-// Hero — altura FIXA de 380px, não ocupa a tela toda
-export function CardHero({ noticia }: { noticia: News }) {
+function Badge({categoria}: { categoria: string }) {
   return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block" style={{ height: "100%" }}>
-      <article style={{ position: "relative", height: 380, borderRadius: 4, overflow: "hidden", background: "#1a1a2e" }}>
-        {noticia.thumbnailUrl && (
-          <Image src={noticia.thumbnailUrl} alt={noticia.title} fill
-            style={{ objectFit: "cover", opacity: 0.75, transition: "transform 0.5s" }}
-            className="group-hover:scale-105" priority />
-        )}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)" }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "20px 18px" }}>
-          <Badge categoria={noticia.category.name} />
-          <h2 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "1.3rem", color: "#fff", lineHeight: 1.3, marginTop: 8 }}
-              className="group-hover:underline decoration-white underline-offset-2">
-            {noticia.title}
-          </h2>
-          <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 13, marginTop: 8 }}>
-            {noticia.summary}
-          </p>
-          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 8 }}>
-            {noticia.author} · <time>{formatarData(noticia.publishedAt)}</time>
-          </p>
-        </div>
-      </article>
+    <span className={BADGE_CLASSE[categoria] || "badge"}>
+      {categoria}
+    </span>
+  )
+}
+
+function NoticiaLink({slug, children, className = ""}: {
+  slug: string
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <Link
+      href={`/noticias/${slug}`}
+      className={`group block ${className}`}
+    >
+      {children}
     </Link>
   )
 }
 
-// Destaque secundário — altura fixa de 122px cada (3 = 380px total)
-export function CardDestaque({ noticia }: { noticia: News }) {
+/* ── Hero — altura fixa de 380px ── */
+
+export function CardHero({noticia}: { noticia: News }) {
   return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block" style={{ height: "100%" }}>
-      <article style={{
-        display: "flex", gap: 0, background: "#fff",
-        border: "1px solid var(--borda)", borderRadius: 4,
-        overflow: "hidden", height: "100%", minHeight: 118,
-      }}>
-        {/* Imagem à esquerda */}
-        <div style={{ position: "relative", width: 110, flexShrink: 0, background: "#ddd" }}>
-          {noticia.thumbnailUrl
-            ? <Image src={noticia.thumbnailUrl} alt={noticia.title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} className="group-hover:scale-105" />
-            : <div style={{ position: "absolute", inset: 0, background: "var(--azul)" }} />
-          }
+    <NoticiaLink slug={noticia.slug} className="h-full">
+      <article
+        className="relative overflow-hidden rounded"
+        style={{height: 380, background: "#1a1a2e"}}
+      >
+        {noticia.thumbnailUrl && (
+          <Image
+            src={noticia.thumbnailUrl}
+            alt={noticia.title}
+            fill
+            className="object-cover opacity-75 transition-transform duration-500 group-hover:scale-105"
+            priority
+          />
+        )}
+
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)",
+          }}
+        />
+
+        <div className="absolute bottom-0 left-0 right-0 p-5">
+          <Badge categoria={noticia.category.name}/>
+
+          <h2
+            className="group-hover:underline decoration-white underline-offset-2"
+            style={{
+              fontFamily: "var(--fonte-titulo)",
+              fontWeight: 600,
+              fontSize: "1.3rem",
+              color: "#fff",
+              lineHeight: 1.3,
+              marginTop: 8,
+            }}
+          >
+            {noticia.title}
+          </h2>
+
+          <p style={{color: "rgba(255,255,255,0.65)", fontSize: 13, marginTop: 8}}>
+            {noticia.summary}
+          </p>
+
+          <p style={{color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 8}}>
+            {noticia.author} ·{" "}
+            <time dateTime={noticia.publishedAt}>
+              {formatarDataRelativa(noticia.publishedAt)}
+            </time>
+          </p>
         </div>
+      </article>
+    </NoticiaLink>
+  )
+}
+
+/* ── Destaque secundário ── */
+
+export function CardDestaque({noticia}: { noticia: News }) {
+  return (
+    <NoticiaLink slug={noticia.slug} className="h-full">
+      <article
+        className="flex overflow-hidden rounded"
+        style={{
+          background: "#fff",
+          border: "1px solid var(--borda)",
+          height: "100%",
+          minHeight: 118,
+        }}
+      >
+        {/* Imagem à esquerda */}
+        <div className="relative shrink-0" style={{width: 110, background: "#ddd"}}>
+          {noticia.thumbnailUrl ? (
+            <Image
+              src={noticia.thumbnailUrl}
+              alt={noticia.title}
+              fill
+              className="object-cover transition-transform duration-400 group-hover:scale-105"
+            />
+          ) : (
+            <div className="absolute inset-0" style={{background: "var(--azul)"}}/>
+          )}
+        </div>
+
         {/* Texto à direita */}
-        <div style={{ padding: "10px 12px", display: "flex", flexDirection: "column", gap: 5, flex: 1, minWidth: 0 }}>
-          <Badge categoria={noticia.category.name} />
-          <h3 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.3, color: "var(--texto)" }}
-              className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
+        <div className="flex flex-col gap-1 p-3 min-w-0 flex-1">
+          <Badge categoria={noticia.category.name}/>
+
+          <h3
+            className="group-hover:text-[var(--azul)] transition-colors line-clamp-3"
+            style={{
+              fontFamily: "var(--fonte-titulo)",
+              fontWeight: 600,
+              fontSize: "0.88rem",
+              lineHeight: 1.3,
+              color: "var(--texto)",
+            }}
+          >
             {noticia.title}
           </h3>
-          <time style={{ fontSize: 11, color: "var(--cinza-medio)", marginTop: "auto" }}>
-            {formatarData(noticia.publishedAt)}
+
+          <time
+            dateTime={noticia.publishedAt}
+            style={{fontSize: 11, color: "var(--cinza-medio)", marginTop: "auto"}}
+          >
+            {formatarDataRelativa(noticia.publishedAt)}
           </time>
         </div>
       </article>
-    </Link>
+    </NoticiaLink>
   )
 }
 
-// Lista (com miniatura e número opcional)
-export function CardLista({ noticia, index }: { noticia: News; index?: number }) {
+/* ── Lista (com miniatura e número opcional) ── */
+
+export function CardLista({noticia, index}: { noticia: News; index?: number }) {
   return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block">
-      <article style={{ display: "flex", gap: 10, padding: "11px 0", borderBottom: "1px solid var(--borda)", alignItems: "flex-start" }}>
+    <NoticiaLink slug={noticia.slug}>
+      <article
+        className="flex items-start gap-2.5"
+        style={{padding: "11px 0", borderBottom: "1px solid var(--borda)"}}
+      >
         {index !== undefined && (
-          <span style={{ fontFamily: "var(--fonte-title)", fontSize: 20, fontWeight: 700, color: "var(--borda)", lineHeight: 1, flexShrink: 0, minWidth: 22, paddingTop: 2 }}>
+          <span
+            className="shrink-0"
+            style={{
+              fontFamily: "var(--fonte-titulo)",
+              fontSize: 20,
+              fontWeight: 700,
+              color: "var(--borda)",
+              lineHeight: 1,
+              minWidth: 22,
+              paddingTop: 2,
+            }}
+          >
             {String(index + 1).padStart(2, "0")}
           </span>
         )}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <h3 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "0.88rem", lineHeight: 1.35, color: "var(--texto)" }}
-              className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
+
+        <div className="flex-1 min-w-0">
+          <h3
+            className="group-hover:text-[var(--azul)] transition-colors line-clamp-3"
+            style={{
+              fontFamily: "var(--fonte-titulo)",
+              fontWeight: 600,
+              fontSize: "0.88rem",
+              lineHeight: 1.35,
+              color: "var(--texto)",
+            }}
+          >
             {noticia.title}
           </h3>
-          <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 5 }}>
-            <Badge categoria={noticia.category.name} />
-            <time style={{ fontSize: 11, color: "var(--cinza-medio)" }}>{formatarData(noticia.publishedAt)}</time>
+
+          <div className="flex items-center gap-1.5 mt-1">
+            <Badge categoria={noticia.category.name}/>
+            <time
+              dateTime={noticia.publishedAt}
+              style={{fontSize: 11, color: "var(--cinza-medio)"}}
+            >
+              {formatarDataRelativa(noticia.publishedAt)}
+            </time>
           </div>
         </div>
+
         {noticia.thumbnailUrl && (
-          <div style={{ position: "relative", width: 68, height: 52, borderRadius: 3, overflow: "hidden", flexShrink: 0 }}>
-            <Image src={noticia.thumbnailUrl} alt="" fill style={{ objectFit: "cover" }} />
+          <div className="relative shrink-0 overflow-hidden rounded-sm" style={{width: 68, height: 52}}>
+            <Image src={noticia.thumbnailUrl} alt="" fill className="object-cover"/>
           </div>
         )}
       </article>
-    </Link>
+    </NoticiaLink>
   )
 }
 
-// Grid 4 colunas
-export function CardGrid({ noticia }: { noticia: News }) {
+/* ── Grid ── */
+
+export function CardGrid({noticia}: { noticia: News }) {
   return (
-    <Link href={`/noticias/${noticia.slug}`} className="group block">
-      <article style={{ background: "#fff", borderRadius: 4, overflow: "hidden", border: "1px solid var(--borda)" }}>
-        <div style={{ position: "relative", aspectRatio: "16/9", background: "#ddd" }}>
-          {noticia.thumbnailUrl
-            ? <Image src={noticia.thumbnailUrl} alt={noticia.title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} className="group-hover:scale-105" />
-            : <div style={{ position: "absolute", inset: 0, background: "var(--azul)" }} />
-          }
+    <NoticiaLink slug={noticia.slug}>
+      <article
+        className="overflow-hidden rounded"
+        style={{background: "#fff", border: "1px solid var(--borda)"}}
+      >
+        <div className="relative" style={{aspectRatio: "16/9", background: "#ddd"}}>
+          {noticia.thumbnailUrl ? (
+            <Image
+              src={noticia.thumbnailUrl}
+              alt={noticia.title}
+              fill
+              className="object-cover transition-transform duration-400 group-hover:scale-105"
+            />
+          ) : (
+            <div className="absolute inset-0" style={{background: "var(--azul)"}}/>
+          )}
         </div>
-        <div style={{ padding: "10px 12px 12px" }}>
-          <Badge categoria={noticia.category.name} />
-          <h3 style={{ fontFamily: "var(--fonte-title)", fontWeight: 600, fontSize: "0.85rem", lineHeight: 1.35, marginTop: 6, color: "var(--texto)" }}
-              className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
+
+        <div className="p-3">
+          <Badge categoria={noticia.category.name}/>
+
+          <h3
+            className="group-hover:text-[var(--azul)] transition-colors line-clamp-3"
+            style={{
+              fontFamily: "var(--fonte-titulo)",
+              fontWeight: 600,
+              fontSize: "0.85rem",
+              lineHeight: 1.35,
+              marginTop: 6,
+              color: "var(--texto)",
+            }}
+          >
             {noticia.title}
           </h3>
-          <time style={{ fontSize: 11, color: "var(--cinza-medio)", display: "block", marginTop: 5 }}>
-            {formatarData(noticia.publishedAt)}
+
+          <time
+            dateTime={noticia.publishedAt}
+            className="block mt-1"
+            style={{fontSize: 11, color: "var(--cinza-medio)"}}
+          >
+            {formatarDataRelativa(noticia.publishedAt)}
           </time>
         </div>
       </article>
-    </Link>
+    </NoticiaLink>
   )
 }
 
-export const CardNoticia         = CardLista
+/* ── Aliases para compatibilidade ── */
+export const CardNoticia = CardLista
 export const CardNoticiaDestaque = CardHero
-export const CardNoticiaGrid     = CardGrid
+export const CardNoticiaGrid = CardGrid

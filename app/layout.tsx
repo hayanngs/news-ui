@@ -1,19 +1,12 @@
-// ─────────────────────────────────────────────
-// app/layout.tsx
-// Layout raiz: envolve TODAS as páginas do site.
-// Aqui ficam: <html>, <body>, Navbar e Footer.
-// ─────────────────────────────────────────────
-
-import type { Metadata } from "next"
+import type {Metadata, Viewport} from "next"
 import "./globals.css"
-import { Navbar } from "@/components/Navbar"
-import { Footer } from "@/components/Footer"
+import {Navbar} from "@/components/Navbar"
+import {Footer} from "@/components/Footer"
+import React from "react";
 
-// metadata exportado → Next.js injeta automaticamente nas <meta> tags
 export const metadata: Metadata = {
   title: {
     default: "Diário Goiano",
-    // Em subpáginas: "Título da Notícia | Diário Goiano"
     template: "%s | Diário Goiano",
   },
   description: "As últimas notícias com jornalismo independente e de qualidade.",
@@ -24,23 +17,20 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0E2D50",
+}
+
+export default function RootLayout({children,}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body>
-        {/* Navbar aparece em todas as páginas */}
-        <Navbar />
-
-        {/* children = conteúdo da página atual */}
-        <main>{children}</main>
-
-        {/* Footer aparece em todas as páginas */}
-        <Footer />
-      </body>
+    <body>
+    <Navbar/>
+    <main id="conteudo-principal">{children}</main>
+    <Footer/>
+    </body>
     </html>
   )
 }

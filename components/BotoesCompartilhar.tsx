@@ -1,23 +1,36 @@
 "use client"
-// components/BotoesCompartilhar.tsx
-// Client Component — usa window.location para pegar a URL atual
 
-export function BotoesCompartilhar({ titulo }: { titulo: string }) {
-  // window só existe no navegador — aqui é seguro porque é "use client"
-  const url = typeof window !== "undefined" ? window.location.href : ""
+import {useState, useEffect} from "react"
 
-  const botoes = [
-    {
-      label: "WhatsApp",
-      href: `https://wa.me/?text=${encodeURIComponent(titulo + " - " + url)}`,
-      cor: "bg-green-600 hover:bg-green-700",
-    },
-    {
-      label: "Twitter / X",
-      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(titulo)}&url=${encodeURIComponent(url)}`,
-      cor: "bg-neutral-900 hover:bg-black",
-    },
-  ]
+interface BotaoConfig {
+  readonly label: string
+  readonly buildHref: (titulo: string, url: string) => string
+  readonly cor: string
+}
+
+const BOTOES: readonly BotaoConfig[] = [
+  {
+    label: "WhatsApp",
+    buildHref: (titulo, url) =>
+      `https://wa.me/?text=${encodeURIComponent(`${titulo} - ${url}`)}`,
+    cor: "bg-green-600 hover:bg-green-700",
+  },
+  {
+    label: "Twitter / X",
+    buildHref: (titulo, url) =>
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(titulo)}&url=${encodeURIComponent(url)}`,
+    cor: "bg-neutral-900 hover:bg-black",
+  },
+] as const
+
+export function BotoesCompartilhar({titulo}: { titulo: string }) {
+  const [url, setUrl] = useState("")
+
+  useEffect(() => {
+    setUrl(window.location.href)
+  }, [])
+
+  if (!url) return null
 
   return (
     <div className="mt-12 pt-6 border-t border-[var(--cor-borda)]">
@@ -25,10 +38,10 @@ export function BotoesCompartilhar({ titulo }: { titulo: string }) {
         Compartilhar
       </p>
       <div className="flex gap-3">
-        {botoes.map((b) => (
+        {BOTOES.map((b) => (
           <a
             key={b.label}
-            href={b.href}
+            href={b.buildHref(titulo, url)}
             target="_blank"
             rel="noopener noreferrer"
             className={`text-xs text-white px-4 py-2 rounded-sm font-semibold transition-colors ${b.cor}`}

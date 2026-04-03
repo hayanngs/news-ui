@@ -4,12 +4,12 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image"
-import { Pessoa } from "@/types"
+import {Pessoa} from "@/types"
 
-export function CardPessoa({ pessoa }: { pessoa: Pessoa }) {
+export function CardPessoa({pessoa}: { pessoa: Pessoa }) {
   return (
     <article className="group text-center">
-      
+
       {/* Foto circular */}
       <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden 
                       border-4 border-[var(--cor-borda)] bg-neutral-200
@@ -19,13 +19,14 @@ export function CardPessoa({ pessoa }: { pessoa: Pessoa }) {
             src={pessoa.fotoUrl}
             alt={pessoa.nome}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
             className="object-cover"
           />
         ) : (
           // Avatar placeholder com inicial do nome
           <div className="absolute inset-0 flex items-center justify-center 
                           bg-[var(--cor-acento)] text-white text-3xl font-bold"
-               style={{ fontFamily: "var(--fonte-titulo)" }}>
+               style={{fontFamily: "var(--fonte-titulo)"}}>
             {pessoa.nome.charAt(0)}
           </div>
         )}
@@ -34,7 +35,7 @@ export function CardPessoa({ pessoa }: { pessoa: Pessoa }) {
       {/* Informações */}
       <h3
         className="text-lg font-bold"
-        style={{ fontFamily: "var(--fonte-titulo)" }}
+        style={{fontFamily: "var(--fonte-titulo)"}}
       >
         {pessoa.nome}
       </h3>

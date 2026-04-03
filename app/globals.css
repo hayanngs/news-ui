@@ -285,3 +285,62 @@ img { display: block; }
 
 /* Barra de categorias sem scrollbar visível */
 nav::-webkit-scrollbar { display: none; }
+
+/* ----------------------------------------------
+   RESPONSIVIDADE — MOBILE FIRST
+   ---------------------------------------------- */
+
+/* ── Container principal: padding menor em mobile ── */
+@media (max-width: 640px) {
+  .w-portal {
+    padding: 0 14px;
+  }
+
+  .pagina-header {
+    padding: 24px 0;
+  }
+
+  .pagina-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .nav-link,
+  .nav-link-ativo {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .conteudo-noticia {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .conteudo-noticia h2 {
+    font-size: 1.2rem;
+  }
+
+  .conteudo-noticia blockquote {
+    padding-left: 0.8rem;
+    font-size: 1rem;
+    margin: 1.2rem 0;
+  }
+}
+
+/* ── Barra de categorias: fade de scroll em mobile ── */
+@media (max-width: 768px) {
+  .categorias-scroll-wrapper {
+    position: relative;
+  }
+
+  .categorias-scroll-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, var(--fundo-branco));
+    pointer-events: none;
+    z-index: 1;
+  }
+}

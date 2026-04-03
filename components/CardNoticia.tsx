@@ -45,6 +45,7 @@ export function CardHero({noticia}: { noticia: News }) {
             src={noticia.thumbnailUrl}
             alt={noticia.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
             className="object-cover opacity-75 transition-transform duration-500 group-hover:scale-105"
             priority
           />
@@ -112,6 +113,7 @@ export function CardDestaque({noticia}: { noticia: News }) {
               src={noticia.thumbnailUrl}
               alt={noticia.title}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
               className="object-cover transition-transform duration-400 group-hover:scale-105"
             />
           ) : (
@@ -201,7 +203,7 @@ export function CardLista({noticia, index}: { noticia: News; index?: number }) {
 
         {noticia.thumbnailUrl && (
           <div className="relative shrink-0 overflow-hidden rounded-sm" style={{width: 68, height: 52}}>
-            <Image src={noticia.thumbnailUrl} alt="" fill className="object-cover"/>
+            <Image src={noticia.thumbnailUrl} alt="" fill sizes="68px" className="object-cover"/>
           </div>
         )}
       </article>
@@ -224,6 +226,7 @@ export function CardGrid({noticia}: { noticia: News }) {
               src={noticia.thumbnailUrl}
               alt={noticia.title}
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-400 group-hover:scale-105"
             />
           ) : (

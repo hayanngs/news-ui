@@ -1786,10 +1786,8 @@ export async function getNoticiasDestaque(): Promise<News[]> {
     const res = await fetch(`${API_URL}/api/news?highlight=true&size=4`, { next: { revalidate: 60 }, signal: AbortSignal.timeout(3000) })
     if (!res.ok) throw new Error()
     const data = await res.json()
-    console.log(`m=getNoticiasDestaque API_URL="${API_URL}" - msg="antes Fallback" data="${data.content}"`)
     return data.content?.length ? data.content : fallback
   } catch {
-    console.log(`m=getNoticiasDestaque API_URL="${API_URL}" - msg="Fallback"`)
     return fallback
   }
 }

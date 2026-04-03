@@ -6,12 +6,14 @@ import Link from "next/link"
 import { getNoticia, getTodosOsslugs, getUltimasNoticias } from "@/lib/api"
 import { BotoesCompartilhar } from "@/components/BotoesCompartilhar"
 import { BADGE_CLASSE } from "@/constants"
+import {News} from "@/types";
 
-type Props = { params: { slug: string } }
+type Props = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
   try {
-    const n = await getNoticia(params.slug)
+    const n = await getNoticia(slug)
     return { title: n.title, description: n.summary, openGraph: { title: n.title, description: n.summary, images: n.thumbnailUrl ? [n.thumbnailUrl] : [] } }
   } catch { return { title: "Notícia não encontrada" } }
 }
@@ -28,15 +30,17 @@ function formatarData(iso: string) {
 }
 
 export default async function PaginaNoticia({ params }: Props) {
+  const { slug } = await params
+
   let noticia
-  try { 
-    noticia = await getNoticia(params.slug) 
-  } catch { 
-    notFound() 
+  try {
+    noticia = await getNoticia(slug)
+  } catch {
+    notFound()
   }
 
   const { noticias: relacionadas } = await getUltimasNoticias(0, 4)
-  const leiaTambem = relacionadas.filter(n => n.slug !== params.slug).slice(0, 3)
+  const leiaTambem = relacionadas.filter((n: News) => n.slug !== slug).slice(0, 3)
 
   return (
     <div style={{ background: "var(--fundo)", minHeight: "100vh" }}>
@@ -92,7 +96,14 @@ export default async function PaginaNoticia({ params }: Props) {
             {/* Imagem — dentro do card, antes do conteúdo */}
             {noticia.thumbnailUrl && (
               <div style={{ position: "relative", aspectRatio: "16/9", background: "#ddd" }}>
-                <Image src={noticia.thumbnailUrl} alt={noticia.title} fill style={{ objectFit: "cover" }} priority />
+                <Image
+                      src={noticia.thumbnailUrl}
+                      alt={noticia.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+                      style={{ objectFit: "cover" }}
+                      priority
+                    />
               </div>
             )}
 
@@ -111,16 +122,23 @@ export default async function PaginaNoticia({ params }: Props) {
                 Leia também
               </div>
               <div style={{ padding: "0 14px" }}>
-                {leiaTambem.map(n => (
+                {leiaTambem.map((n:News) => (
                   <Link key={n.id} href={`/noticias/${n.slug}`} className="group block">
                     <div style={{ display: "flex", gap: 10, padding: "12px 0", borderBottom: "1px solid var(--borda)", alignItems: "flex-start" }}>
-                      {n.thumbnailUrl && (
-                        <div style={{ position: "relative", width: 64, height: 48, borderRadius: 3, overflow: "hidden", flexShrink: 0 }}>
-                          <Image src={n.thumbnailUrl} alt="" fill style={{ objectFit: "cover" }} />
-                        </div>
-                      )}
+                      {/* miniatura do sidebar — 64px fixo */}
+                          {n.thumbnailUrl && (
+                            <div style={{ position: "relative", width: 64, height: 48, borderRadius: 3, overflow: "hidden", flexShrink: 0 }}>
+                              <Image
+                                src={n.thumbnailUrl}
+                                alt=""
+                                fill
+                                sizes="64px"
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+                          )}
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <span style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", color: "var(--azul)", letterSpacing: "0.05em" }}>{n.categoria}</span>
+                        <span style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", color: "var(--azul)", letterSpacing: "0.05em" }}>{n.category.name}</span>
                         <p style={{ fontFamily: "var(--fonte-titulo)", fontSize: "0.85rem", fontWeight: 600, lineHeight: 1.3, marginTop: 3, color: "var(--texto)" }}
                            className="group-hover:text-[var(--azul)] transition-colors line-clamp-3">
                           {n.title}

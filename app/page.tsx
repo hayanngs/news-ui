@@ -22,6 +22,7 @@ function CardDestaqueSec({noticia}: { noticia: News }) {
             src={noticia.thumbnailUrl}
             alt={noticia.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
             className="object-cover opacity-[0.72] transition-transform duration-500 group-hover:scale-105"
           />
         )}
@@ -194,7 +195,7 @@ export default async function PaginaInicial() {
             <section style={{marginBottom: 24}}>
               <TituloSecao label="Mais notícias" href="/ultimas"/>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
-                {ultimas.slice(0, 6).map((n, i) => (
+                {ultimas.slice(0, 6).map((n: News, i: number) => (
                   <div key={n.id} className="fade-up" style={{animationDelay: `${i * 0.05}s`}}>
                     <CardGrid noticia={n}/>
                   </div>

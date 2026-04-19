@@ -7,30 +7,70 @@ import { getNewsBySlug, getAllSlugsNews, getLastNews } from "@/lib/api"
 import { BotoesCompartilhar } from "@/components/BotoesCompartilhar"
 import { BADGE_CLASSE } from "@/constants"
 import {News} from "@/types";
+import {JsonLdNews} from "@/components/JsonLdNews";
 
 type Props = { params: Promise<{ slug: string }> }
+
+export const dynamicParams = true
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   try {
-    const n = await getNewsBySlug(slug)
+    const news = await getNewsBySlug(slug)
+
     return {
-      title: n.title,
-      description: n.summary,
+      // Título com nome do portal — aparece na aba e no Google
+      title: `${news.title} | Diário Goiano`,
+      description: news.summary,
+
+      // Palavras-chave (menos importante hoje, mas ainda válido)
+      keywords: [news.category.name, "Goiás", "Goiânia", "notícias"],
+
+      // Canonical — evita conteúdo duplicado se a mesma notícia
+      // aparecer em múltiplas URLs
+      alternates: {
+        canonical: `https://diariogoiano.com.br/noticias/${news.slug}`,
+      },
+
+      // Open Graph — aparece quando compartilhado no WhatsApp, Facebook, etc.
       openGraph: {
-        title: n.title,
-        description: n.summary,
-        images: n.thumbnailUrl ? [n.thumbnailUrl] : []
-      }
+        title: news.title,
+        description: news.summary,
+        url: `https://diariogoiano.com.br/noticias/${news.slug}`,
+        siteName: "Diário Goiano",
+        locale: "pt_BR",
+        type: "article",
+        publishedTime: news.publishedAt,      // data de publicação
+        authors: [news.author],
+        section: news.category.name,          // "Política", "Esporte", etc.
+        images: news.thumbnailUrl ? [{
+          url: news.thumbnailUrl,
+          width: 1200,
+          height: 630,
+          alt: news.title,
+        }] : [],
+      },
+
+      // Twitter Card — aparece quando compartilhado no Twitter/X
+      twitter: {
+        card: "summary_large_image",
+        title: news.title,
+        description: news.summary,
+        images: news.thumbnailUrl ? [news.thumbnailUrl] : [],
+      },
     }
   } catch {
-    return { title: "Notícia não encontrada" }
+    return { title: "Notícia não encontrada | Diário Goiano" }
   }
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllSlugsNews()
-  return slugs.slice(0, 50).map(slug => ({ slug }))
+  try {
+    const slugs = await getAllSlugsNews()
+    return slugs.slice(0, 20).map(slug => ({ slug }))
+  } catch {
+    return []
+  }
 }
 
 function formatarData(iso: string) {
@@ -123,6 +163,15 @@ export default async function PaginaNoticia({ params }: Props) {
                    dangerouslySetInnerHTML={{ __html: noticia.content }} />
               <BotoesCompartilhar titulo={noticia.title} />
             </div>
+
+            {/* JsonLD */}
+            <JsonLdNews
+              title={noticia.title}
+              summary={noticia.summary}
+              author={noticia.author}
+              publishedAt={noticia.publishedAt}
+              slug={noticia.slug}
+              thumbnailUrl={noticia.thumbnailUrl} />
           </article>
 
           {/* ── SIDEBAR ── */}

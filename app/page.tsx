@@ -1,3 +1,5 @@
+// app/page.tsx
+
 import {
   getLastNews,
   getNewsByCategory,

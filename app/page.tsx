@@ -1,8 +1,8 @@
 import {
-  getUltimasNoticias,
-  getNoticiasPorCategoria,
-  getNoticiasDestaque,
-  getMaisLidas,
+  getLastNews,
+  getNewsByCategory,
+  getHighlightedNews,
+  getTopViews,
 } from "@/lib/api"
 import {CardLista, CardGrid, CardHero} from "@/components/CardNoticia"
 import Link from "next/link"
@@ -152,9 +152,9 @@ const SECOES_CONFIG = [
 
 export default async function PaginaInicial() {
   const [destaques, {noticias: ultimas}, ...categorias] = await Promise.all([
-    getNoticiasDestaque(),
-    getUltimasNoticias(0, 20),
-    ...SECOES_CONFIG.map((s) => getNoticiasPorCategoria(s.slug)),
+    getHighlightedNews(),
+    getLastNews(0, 20),
+    ...SECOES_CONFIG.map((s) => getNewsByCategory(s.slug)),
   ])
 
   // Monta as seções com os dados carregados
@@ -165,7 +165,7 @@ export default async function PaginaInicial() {
     cor: config.cor,
   })).filter((s) => s.noticias.length > 0)
 
-  const maisLidas = await getMaisLidas()
+  const maisLidas = await getTopViews()
   const [hero, sec1, sec2] = destaques
 
   return (

@@ -4,9 +4,9 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image"
-import {Pessoa} from "@/types"
+import {Person} from "@/types"
 
-export function CardPessoa({pessoa}: { pessoa: Pessoa }) {
+export function CardPessoa({pessoa}: { pessoa: Person }) {
   return (
     <article className="group text-center">
 
@@ -14,10 +14,10 @@ export function CardPessoa({pessoa}: { pessoa: Pessoa }) {
       <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden 
                       border-4 border-[var(--cor-borda)] bg-neutral-200
                       transition-transform duration-300 group-hover:scale-105">
-        {pessoa.fotoUrl ? (
+        {pessoa.photoUrl ? (
           <Image
-            src={pessoa.fotoUrl}
-            alt={pessoa.nome}
+            src={pessoa.photoUrl}
+            alt={pessoa.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
             className="object-cover"
@@ -27,7 +27,7 @@ export function CardPessoa({pessoa}: { pessoa: Pessoa }) {
           <div className="absolute inset-0 flex items-center justify-center 
                           bg-[var(--cor-acento)] text-white text-3xl font-bold"
                style={{fontFamily: "var(--fonte-titulo)"}}>
-            {pessoa.nome.charAt(0)}
+            {pessoa.name.charAt(0)}
           </div>
         )}
       </div>
@@ -37,13 +37,13 @@ export function CardPessoa({pessoa}: { pessoa: Pessoa }) {
         className="text-lg font-bold"
         style={{fontFamily: "var(--fonte-titulo)"}}
       >
-        {pessoa.nome}
+        {pessoa.name}
       </h3>
       <p className="text-xs font-semibold tracking-wider uppercase text-[var(--cor-acento)] mt-0.5">
-        {pessoa.cargo}
+        {pessoa.position}
       </p>
       <p className="mt-3 text-sm text-[var(--cor-texto-suave)] leading-relaxed">
-        {pessoa.bio}
+        {pessoa.biography}
       </p>
 
       {/* Links sociais */}
@@ -55,17 +55,6 @@ export function CardPessoa({pessoa}: { pessoa: Pessoa }) {
                        transition-colors border border-[var(--cor-borda)] rounded-full px-3 py-1"
           >
             Email
-          </a>
-        )}
-        {pessoa.linkedin && (
-          <a
-            href={pessoa.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-[var(--cor-texto-suave)] hover:text-[var(--cor-acento)] 
-                       transition-colors border border-[var(--cor-borda)] rounded-full px-3 py-1"
-          >
-            LinkedIn
           </a>
         )}
       </div>

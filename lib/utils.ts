@@ -49,3 +49,19 @@ export function dataHojeCurta(): string {
     year: "numeric",
   })
 }
+
+/**
+ * Gera um slug a partir de um texto.
+ * Ex: "Governo anuncia novo programa" → "governo-anuncia-novo-programa"
+ */
+export function generateSlug(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // remove acentos
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")   // remove caracteres especiais
+    .replace(/\s+/g, "-")           // espaços → hífens
+    .replace(/-+/g, "-")            // hífens duplicados
+    .replace(/^-|-$/g, "")          // hífens no início/fim
+}

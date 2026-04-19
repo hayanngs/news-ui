@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { getNoticia, getTodosOsslugs, getUltimasNoticias } from "@/lib/api"
+import { getNewsBySlug, getAllSlugsNews, getLastNews } from "@/lib/api"
 import { BotoesCompartilhar } from "@/components/BotoesCompartilhar"
 import { BADGE_CLASSE } from "@/constants"
 import {News} from "@/types";
@@ -13,13 +13,23 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   try {
-    const n = await getNoticia(slug)
-    return { title: n.title, description: n.summary, openGraph: { title: n.title, description: n.summary, images: n.thumbnailUrl ? [n.thumbnailUrl] : [] } }
-  } catch { return { title: "Notícia não encontrada" } }
+    const n = await getNewsBySlug(slug)
+    return {
+      title: n.title,
+      description: n.summary,
+      openGraph: {
+        title: n.title,
+        description: n.summary,
+        images: n.thumbnailUrl ? [n.thumbnailUrl] : []
+      }
+    }
+  } catch {
+    return { title: "Notícia não encontrada" }
+  }
 }
 
 export async function generateStaticParams() {
-  const slugs = await getTodosOsslugs()
+  const slugs = await getAllSlugsNews()
   return slugs.slice(0, 50).map(slug => ({ slug }))
 }
 
@@ -34,12 +44,12 @@ export default async function PaginaNoticia({ params }: Props) {
 
   let noticia
   try {
-    noticia = await getNoticia(slug)
+    noticia = await getNewsBySlug(slug)
   } catch {
     notFound()
   }
 
-  const { noticias: relacionadas } = await getUltimasNoticias(0, 4)
+  const { noticias: relacionadas } = await getLastNews(0, 4)
   const leiaTambem = relacionadas.filter((n: News) => n.slug !== slug).slice(0, 3)
 
   return (

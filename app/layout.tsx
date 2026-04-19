@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     default: "Diário Goiano",
     template: "%s | Diário Goiano",
   },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   description: "As últimas notícias com jornalismo independente e de qualidade.",
   openGraph: {
     siteName: "Diário Goiano",

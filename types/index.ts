@@ -57,7 +57,7 @@ export interface News {
   readonly isPublished: boolean
   readonly isHighlight: boolean
   readonly createdAt?: string
-  readonly updatedAt?: string
+  readonly updatedAt: string
 }
 
 // O que o frontend envia em POST/PUT /api/admin/news

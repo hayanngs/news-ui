@@ -5,13 +5,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "images.unsplash.com"
       },
-      // Adicione aqui o domínio do seu backend / storage:
-      // {
-      //   protocol: "https",
-      //   hostname: "seu-bucket.s3.amazonaws.com",
-      // },
+      {
+        protocol: "https",
+        hostname: "media.diariogoiano.com.br"
+      }
     ],
   },
 }

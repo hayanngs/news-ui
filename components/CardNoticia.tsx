@@ -263,8 +263,3 @@ export function CardGrid({noticia}: { noticia: News }) {
     </NoticiaLink>
   )
 }
-
-/* ── Aliases para compatibilidade ── */
-export const CardNoticia = CardLista
-export const CardNoticiaDestaque = CardHero
-export const CardNoticiaGrid = CardGrid

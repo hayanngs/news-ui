@@ -23,6 +23,14 @@ export const CATEGORIAS: readonly NavLink[] = [
   {href: "/seguranca", label: "Segurança"},
 ] as const
 
+export const CATEGORIES_CONFIG = [
+  {name: "Política", slug: "politica", href: "/politica", color: "var(--cat-politica)"},
+  {name: "Segurança", slug: "seguranca", href: "/seguranca", color: "var(--cat-seguranca)"},
+  {name: "Esporte", slug: "esporte", href: "/esporte", color: "var(--cat-esporte)"},
+  {name: "Entretenimento", slug: "entretenimento", href: "/entretenimento", color: "var(--cat-entretenimento)"},
+  {name: "Economia", slug: "economia", href: "/economia", color: "var(--cat-economia)"},
+] as const
+
 export const INSTITUCIONAIS: readonly NavLink[] = [
   {href: "/sobre", label: "Sobre"},
   {href: "/pessoas", label: "Quem somos"},

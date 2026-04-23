@@ -1,23 +1,13 @@
 import {Metadata} from "next"
 import {getPessoas} from "@/lib/api"
 import {CardPessoa} from "@/components/CardPessoa"
-import {Pessoa} from "@/types";
+import {Person} from "@/types";
 
 export const metadata: Metadata = {title: "Quem Somos"}
 
 export default async function QuemSomos() {
-  let pessoas: Pessoa[] = []
-  try {
-    pessoas = await getPessoas()
-  } catch {
-  }
-  const fallback = [
-    {id: 1, nome: "Ana Souza", cargo: "Editora-chefe", bio: "15 anos de experiência em jornalismo político e investigativo.", fotoUrl: "", email: "ana@diariogoiano.com.br"},
-    {id: 2, nome: "Carlos Lima", cargo: "Editor de Economia", bio: "Especializado em cobertura econômica e mercado financeiro.", fotoUrl: "", email: "carlos@diariogoiano.com.br"},
-    {id: 3, nome: "Maria Santos", cargo: "Jornalista", bio: "Cobre pautas sociais, direitos humanos e políticas públicas.", fotoUrl: "", email: "maria@diariogoiano.com.br"},
-    {id: 4, nome: "Pedro Alves", cargo: "Repórter", bio: "Fotojornalista especializado em cultura e meio ambiente.", fotoUrl: "", email: "pedro@diariogoiano.com.br"},
-  ]
-  const lista = pessoas.length > 0 ? pessoas : fallback
+  let pessoas: Person[] = []
+  pessoas = await getPessoas()
 
   return (
     <>
@@ -30,7 +20,7 @@ export default async function QuemSomos() {
       </div>
       <div className="w-portal" style={{paddingBottom: 60}}>
         <div style={{display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 20, marginBottom: 48}}>
-          {lista.map((pessoa, i) => (
+          {pessoas.map((pessoa, i) => (
             <div key={pessoa.id} className="fade-up" style={{animationDelay: `${i * 0.08}s`, opacity: 0}}>
               <CardPessoa pessoa={pessoa}/>
             </div>

@@ -1,7 +1,7 @@
 import {Metadata} from "next"
 import Link from "next/link"
 import Image from "next/image"
-import {getUltimasNoticias, getMaisLidas} from "@/lib/api"
+import {getLastNews, getTopViews} from "@/lib/api"
 import {News} from "@/types"
 import {CardLista} from "@/components/CardNoticia"
 import {BADGE_CLASSE} from "@/constants"
@@ -146,8 +146,8 @@ export default async function UltimasNoticias({
   const paginaAtual = Number.isFinite(parsed) && parsed >= 1 ? Math.floor(parsed) : 1
 
   const [{noticias, totalPaginas, totalElementos}, maisLidas] = await Promise.all([
-    getUltimasNoticias(paginaAtual - 1, POR_PAGINA),
-    getMaisLidas(),
+    getLastNews(paginaAtual - 1, POR_PAGINA),
+    getTopViews(),
   ])
 
   return (

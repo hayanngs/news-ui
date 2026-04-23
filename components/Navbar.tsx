@@ -227,39 +227,32 @@ export function Navbar() {
         </div>
 
         {/* ── Barra de categorias ── */}
-        <nav
-          aria-label="Categorias"
-          className="categorias-scroll-wrapper"
-          style={{
-            background: "var(--fundo-branco)",
-            borderBottom: "1px solid var(--borda)",
+        <div className="categorias-scroll-wrapper" style={{position: "relative"}}>
+          <nav style={{
             overflowX: "auto",
             scrollbarWidth: "none",
             WebkitOverflowScrolling: "touch",
-          }}
-        >
-          <div
-            style={{
+            background: "var(--fundo-branco)",
+            borderBottom: "1px solid var(--borda)",
+          }}>
+            <div style={{
               display: "flex",
-              justifyContent: "center",
-              minWidth: "max-content",
+              width: "max-content",
               maxHeight: 40,
               margin: "0 auto",
               padding: "0 16px",
-            }}
-          >
-            {CATEGORIAS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={pathname === link.href ? "nav-link-ativo" : "nav-link"}
-                style={{whiteSpace: "nowrap"}}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
+            }}>
+              {CATEGORIAS.map((link) => (
+                <Link key={link.href} href={link.href}
+                      className={pathname === link.href ? "nav-link-ativo" : "nav-link"}
+                      style={{whiteSpace: "nowrap"}}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+          {/* O fade agora é filho da div externa — não rola */}
+        </div>
       </header>
 
       {/* ── Overlay escuro quando menu aberto ── */}

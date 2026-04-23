@@ -7,6 +7,8 @@ import { useAuth } from "@/lib/auth-context"
 import { Tag } from "@/types"
 import { fetchTags, createTag, deleteTag } from "@/lib/admin-api"
 import { generateSlug } from "@/lib/utils"
+import { IconPlus, IconTrash } from "@/components/admin/Icons"
+
 
 export default function AdminTagsPage() {
   const { token } = useAuth()
@@ -89,6 +91,7 @@ export default function AdminTagsPage() {
           className="admin-btn admin-btn-primary"
           disabled={saving}
         >
+          <IconPlus size={16} />
           {saving ? "Criando..." : "Criar Tag"}
         </button>
       </form>
@@ -110,6 +113,7 @@ export default function AdminTagsPage() {
                 onClick={() => handleDelete(tag.id)}
                 className="admin-btn admin-btn-sm admin-btn-danger"
               >
+                <IconTrash size={14} />
                 Excluir
               </button>
             </div>

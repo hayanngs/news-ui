@@ -4,12 +4,17 @@
 import React, { useEffect, useState } from "react"
 import AdminGuard from "@/components/admin/AdminGuard"
 import { useAuth } from "@/lib/auth-context"
-import { User } from "@/types"
 import {
   fetchMyProfile,
   updateMyProfile,
   changeMyPassword,
 } from "@/lib/admin-api"
+import {
+  IconIdCard,
+  IconLock,
+  IconCheck,
+  IconAlert,
+} from "@/components/admin/Icons"
 
 export default function AdminPerfilPage() {
   const { token, refreshUser } = useAuth()
@@ -140,73 +145,91 @@ export default function AdminPerfilPage() {
           <div className="admin-perfil-forms">
             {/* Form: Dados do perfil */}
             <form onSubmit={handleSaveProfile} className="admin-perfil-section">
-              <h2 className="admin-section-title">Informações Pessoais</h2>
+              <header className="admin-perfil-section-header">
+                <div className="admin-perfil-section-icon">
+                  <IconIdCard size={20} />
+                </div>
+                <div>
+                  <h2>Informações Pessoais</h2>
+                  <p>Atualize seus dados públicos e biografia.</p>
+                </div>
+              </header>
 
-              {successMsg && (
-                <div className="admin-alert admin-alert-success">{successMsg}</div>
-              )}
-              {errorMsg && (
-                <div className="admin-alert admin-alert-error">{errorMsg}</div>
-              )}
+              <div className="admin-perfil-section-body">
+                {successMsg && (
+                  <div className="admin-alert admin-alert-success">
+                    <IconCheck size={16} />
+                    <span>{successMsg}</span>
+                  </div>
+                )}
+                {errorMsg && (
+                  <div className="admin-alert admin-alert-error">
+                    <IconAlert size={16} />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
 
-              <div className="admin-form-group">
-                <label htmlFor="prof-name">Nome completo</label>
-                <input
-                  id="prof-name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Seu nome"
-                  required
-                />
+                <div className="admin-form-grid">
+                  <div className="admin-form-group">
+                    <label htmlFor="prof-name">Nome completo</label>
+                    <input
+                      id="prof-name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Seu nome"
+                      required
+                    />
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label htmlFor="prof-email">Email</label>
+                    <input
+                      id="prof-email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="seu@email.com"
+                      required
+                    />
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label htmlFor="prof-position">Cargo / Função</label>
+                    <input
+                      id="prof-position"
+                      type="text"
+                      value={position}
+                      onChange={(e) => setPosition(e.target.value)}
+                      placeholder="Ex: Repórter, Editora-chefe, Colunista"
+                    />
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label htmlFor="prof-photo">URL da Foto</label>
+                    <input
+                      id="prof-photo"
+                      type="url"
+                      value={photoUrl}
+                      onChange={(e) => setPhotoUrl(e.target.value)}
+                      placeholder="https://exemplo.com/sua-foto.jpg"
+                    />
+                  </div>
+                </div>
+
+                <div className="admin-form-group">
+                  <label htmlFor="prof-bio">Biografia</label>
+                  <textarea
+                    id="prof-bio"
+                    value={biography}
+                    onChange={(e) => setBiography(e.target.value)}
+                    placeholder="Conte um pouco sobre você, sua experiência e áreas de cobertura..."
+                    rows={5}
+                  />
+                </div>
               </div>
 
-              <div className="admin-form-group">
-                <label htmlFor="prof-email">Email</label>
-                <input
-                  id="prof-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com"
-                  required
-                />
-              </div>
-
-              <div className="admin-form-group">
-                <label htmlFor="prof-position">Cargo / Função</label>
-                <input
-                  id="prof-position"
-                  type="text"
-                  value={position}
-                  onChange={(e) => setPosition(e.target.value)}
-                  placeholder="Ex: Repórter, Editora-chefe, Colunista"
-                />
-              </div>
-
-              <div className="admin-form-group">
-                <label htmlFor="prof-photo">URL da Foto</label>
-                <input
-                  id="prof-photo"
-                  type="url"
-                  value={photoUrl}
-                  onChange={(e) => setPhotoUrl(e.target.value)}
-                  placeholder="https://exemplo.com/sua-foto.jpg"
-                />
-              </div>
-
-              <div className="admin-form-group">
-                <label htmlFor="prof-bio">Biografia</label>
-                <textarea
-                  id="prof-bio"
-                  value={biography}
-                  onChange={(e) => setBiography(e.target.value)}
-                  placeholder="Conte um pouco sobre você, sua experiência e áreas de cobertura..."
-                  rows={5}
-                />
-              </div>
-
-              <div className="admin-form-actions">
+              <footer className="admin-perfil-section-footer">
                 <button
                   type="submit"
                   className="admin-btn admin-btn-primary"
@@ -214,61 +237,75 @@ export default function AdminPerfilPage() {
                 >
                   {saving ? "Salvando..." : "Salvar Perfil"}
                 </button>
-              </div>
+              </footer>
             </form>
 
             {/* Form: Alterar senha */}
             <form onSubmit={handleChangePassword} className="admin-perfil-section">
-              <h2 className="admin-section-title">Alterar Senha</h2>
-
-              {passwordSuccess && (
-                <div className="admin-alert admin-alert-success">
-                  {passwordSuccess}
+              <header className="admin-perfil-section-header">
+                <div className="admin-perfil-section-icon">
+                  <IconLock size={20} />
                 </div>
-              )}
-              {passwordError && (
-                <div className="admin-alert admin-alert-error">
-                  {passwordError}
+                <div>
+                  <h2>Alterar Senha</h2>
+                  <p>Mantenha sua conta segura com uma senha forte.</p>
                 </div>
-              )}
+              </header>
 
-              <div className="admin-form-group">
-                <label htmlFor="current-pw">Senha atual</label>
-                <input
-                  id="current-pw"
-                  type="password"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                />
+              <div className="admin-perfil-section-body">
+                {passwordSuccess && (
+                  <div className="admin-alert admin-alert-success">
+                    <IconCheck size={16} />
+                    <span>{passwordSuccess}</span>
+                  </div>
+                )}
+                {passwordError && (
+                  <div className="admin-alert admin-alert-error">
+                    <IconAlert size={16} />
+                    <span>{passwordError}</span>
+                  </div>
+                )}
+
+                <div className="admin-form-group">
+                  <label htmlFor="current-pw">Senha atual</label>
+                  <input
+                    id="current-pw"
+                    type="password"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+
+                <div className="admin-form-grid">
+                  <div className="admin-form-group">
+                    <label htmlFor="new-pw">Nova senha</label>
+                    <input
+                      id="new-pw"
+                      type="password"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="Mínimo 6 caracteres"
+                      required
+                    />
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label htmlFor="confirm-pw">Confirmar nova senha</label>
+                    <input
+                      id="confirm-pw"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Repita a nova senha"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="admin-form-group">
-                <label htmlFor="new-pw">Nova senha</label>
-                <input
-                  id="new-pw"
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Mínimo 6 caracteres"
-                  required
-                />
-              </div>
-
-              <div className="admin-form-group">
-                <label htmlFor="confirm-pw">Confirmar nova senha</label>
-                <input
-                  id="confirm-pw"
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Repita a nova senha"
-                  required
-                />
-              </div>
-
-              <div className="admin-form-actions">
+              <footer className="admin-perfil-section-footer">
                 <button
                   type="submit"
                   className="admin-btn admin-btn-primary"
@@ -276,7 +313,7 @@ export default function AdminPerfilPage() {
                 >
                   {savingPassword ? "Alterando..." : "Alterar Senha"}
                 </button>
-              </div>
+              </footer>
             </form>
           </div>
         </div>

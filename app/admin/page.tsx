@@ -7,6 +7,12 @@ import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
 import { fetchMyProfile } from "@/lib/admin-api"
 import { User } from "@/types"
+import {
+  IconPencil,
+  IconNews,
+  IconTag,
+  IconUser,
+} from "@/components/admin/Icons"
 
 export default function AdminDashboard() {
   const { token, user: authUser, refreshUser } = useAuth()
@@ -72,6 +78,7 @@ export default function AdminDashboard() {
                 className="admin-btn admin-btn-primary"
                 style={{ marginTop: 16, display: "inline-flex" }}
               >
+                <IconPencil size={16} />
                 Editar Perfil
               </Link>
             </div>
@@ -85,22 +92,30 @@ export default function AdminDashboard() {
       <h2 className="admin-section-title">Acesso Rápido</h2>
       <div className="admin-dashboard-cards">
         <Link href="/admin/noticias/nova" className="admin-dashboard-card">
-          <span className="admin-dashboard-icon">✍️</span>
+          <span className="admin-dashboard-icon">
+            <IconPencil size={22} />
+          </span>
           <strong>Nova Notícia</strong>
           <p>Criar e publicar uma nova matéria</p>
         </Link>
         <Link href="/admin/noticias" className="admin-dashboard-card">
-          <span className="admin-dashboard-icon">📰</span>
+          <span className="admin-dashboard-icon">
+            <IconNews size={22} />
+          </span>
           <strong>Minhas Notícias</strong>
           <p>Gerenciar notícias publicadas</p>
         </Link>
         <Link href="/admin/tags" className="admin-dashboard-card">
-          <span className="admin-dashboard-icon">🏷️</span>
+          <span className="admin-dashboard-icon">
+            <IconTag size={22} />
+          </span>
           <strong>Tags</strong>
           <p>Gerenciar tags de notícias</p>
         </Link>
         <Link href="/admin/perfil" className="admin-dashboard-card">
-          <span className="admin-dashboard-icon">👤</span>
+          <span className="admin-dashboard-icon">
+            <IconUser size={22} />
+          </span>
           <strong>Meu Perfil</strong>
           <p>Atualizar dados e biografia</p>
         </Link>

@@ -5,12 +5,20 @@ import React, {useState} from "react"
 import Link from "next/link"
 import {usePathname} from "next/navigation"
 import {useAuth} from "@/lib/auth-context"
+import {
+  IconHome,
+  IconNews,
+  IconTag,
+  IconUser,
+  IconMenu,
+  IconLogout,
+} from "@/components/admin/Icons"
 
 const NAV_ITEMS = [
-  { href: "/admin", label: "Início", icon: "🏠" },
-  { href: "/admin/noticias", label: "Notícias", icon: "📰" },
-  { href: "/admin/tags", label: "Tags", icon: "🏷️" },
-  { href: "/admin/perfil", label: "Meu Perfil", icon: "👤" },
+  { href: "/admin", label: "Início", Icon: IconHome },
+  { href: "/admin/noticias", label: "Notícias", Icon: IconNews },
+  { href: "/admin/tags", label: "Tags", Icon: IconTag },
+  { href: "/admin/perfil", label: "Meu Perfil", Icon: IconUser },
 ]
 
 export default function AdminShell({
@@ -40,20 +48,22 @@ export default function AdminShell({
         </div>
 
         <nav className="admin-nav">
-          {NAV_ITEMS.map((item) => {
+          {NAV_ITEMS.map(({ href, label, Icon }) => {
             const isActive =
-              item.href === "/admin"
+              href === "/admin"
                 ? pathname === "/admin"
-                : pathname.startsWith(item.href)
+                : pathname.startsWith(href)
             return (
               <Link
-                key={item.href}
-                href={item.href}
+                key={href}
+                href={href}
                 className={`admin-nav-link ${isActive ? "active" : ""}`}
                 onClick={() => setSidebarOpen(false)}
               >
-                <span className="admin-nav-icon">{item.icon}</span>
-                {item.label}
+                <span className="admin-nav-icon">
+                  <Icon size={18} />
+                </span>
+                {label}
               </Link>
             )
           })}
@@ -61,12 +71,16 @@ export default function AdminShell({
 
         <div className="admin-sidebar-footer">
           <div className="admin-user-info">
-            {user?.photoUrl && (
+            {user?.photoUrl ? (
               <img
                 src={user.photoUrl}
                 alt={user.name}
                 className="admin-sidebar-avatar"
               />
+            ) : (
+              <div className="admin-sidebar-avatar admin-sidebar-avatar-fallback">
+                {user?.name?.charAt(0).toUpperCase() ?? "?"}
+              </div>
             )}
             <div>
               <strong>{user?.name}</strong>
@@ -74,7 +88,8 @@ export default function AdminShell({
             </div>
           </div>
           <button onClick={logout} className="admin-btn-logout">
-            Sair
+            <IconLogout size={16} />
+            <span>Sair</span>
           </button>
         </div>
       </aside>
@@ -87,7 +102,7 @@ export default function AdminShell({
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-label="Abrir menu"
           >
-            ☰
+            <IconMenu size={20} />
           </button>
           <div className="admin-topbar-right">
             <span>Olá, {user?.name}</span>

@@ -7,6 +7,8 @@ import AdminGuard from "@/components/admin/AdminGuard"
 import {useAuth} from "@/lib/auth-context"
 import {News} from "@/types"
 import {fetchAdminNews, deleteNews} from "@/lib/admin-api"
+import {IconPlus, IconPencil, IconTrash} from "@/components/admin/Icons"
+
 
 export default function AdminNoticiasPage() {
   const { token } = useAuth()
@@ -42,7 +44,8 @@ export default function AdminNoticiasPage() {
           href="/admin/noticias/nova"
           className="admin-btn admin-btn-primary"
         >
-          + Nova Notícia
+          <IconPlus size={16} />
+          Nova Notícia
         </Link>
       </div>
 
@@ -97,12 +100,14 @@ export default function AdminNoticiasPage() {
                       href={`/admin/noticias/${item.id}`}
                       className="admin-btn admin-btn-sm"
                     >
+                      <IconPencil size={14} />
                       Editar
                     </Link>
                     <button
                       onClick={() => handleDelete(item.id)}
                       className="admin-btn admin-btn-sm admin-btn-danger"
                     >
+                      <IconTrash size={14} />
                       Excluir
                     </button>
                   </div>

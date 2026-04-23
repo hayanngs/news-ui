@@ -3,7 +3,7 @@ import {Category, News, PaginaEstatica, Person} from "@/types"
 import {NOTICIAS_MOCK, PESSOAS_MOCK} from "@/lib/api-mock"
 import {CATEGORIES_CONFIG} from "@/constants";
 
-const API_URL = process.env.API_URL || "http://localhost:8080"
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
 const MOCK_ENABLED = process.env.MOCK_ENABLED === "true"
 
 // Helper: usa mock se MOCK_ENABLED, senão chama a API.

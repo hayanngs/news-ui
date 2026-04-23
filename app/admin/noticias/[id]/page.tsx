@@ -25,7 +25,10 @@ export default function EditarNoticiaPage({
       return
 
     fetchNewsById(token, id)
-      .then(setNews)
+      .then((data) => {
+        console.log(data)
+        setNews(data)
+      })
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [token, id])
@@ -62,11 +65,12 @@ export default function EditarNoticiaPage({
           summary: news.summary,
           content: news.content,
           thumbnailUrl: news.thumbnailUrl,
+          thumbnailCaption: news.thumbnailCaption,
           categorySlug: news.category.slug,
           tagIds: [],
-          author: news.author,
           published: news.isPublished,
           highlight: news.isHighlight,
+          editorial: news.isEditorial,
         }}
         onSubmit={handleUpdate}
         submitLabel="Salvar Alterações"

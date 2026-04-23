@@ -68,7 +68,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export async function generateStaticParams() {
   try {
     const slugs = await getAllSlugsNews()
-    return slugs.slice(0, 20).map(slug => ({slug}))
+    return slugs.map(slug => ({slug}))
   } catch {
     return []
   }
@@ -169,16 +169,30 @@ export default async function PaginaNoticia({params}: Props) {
 
             {/* Imagem — dentro do card, antes do conteúdo */}
             {noticia.thumbnailUrl && (
-              <div style={{position: "relative", aspectRatio: "16/9", background: "#ddd"}}>
-                <Image
-                  src={noticia.thumbnailUrl}
-                  alt={noticia.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
-                  style={{objectFit: "cover"}}
-                  priority
-                />
-              </div>
+              <figure style={{margin: 0}}>
+                <div style={{position: "relative", aspectRatio: "16/9", background: "#ddd"}}>
+                  <Image
+                    src={noticia.thumbnailUrl}
+                    alt={noticia.thumbnailCaption || noticia.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+                    style={{objectFit: "cover"}}
+                    priority
+                  />
+                </div>
+                {noticia.thumbnailCaption && (
+                  <figcaption style={{
+                    fontSize: 12,
+                    color: "var(--cinza-texto)",
+                    padding: "6px 28px",
+                    borderTop: "1px solid var(--borda)",
+                    background: "#fafafa",
+                    fontStyle: "italic",
+                  }}>
+                    {noticia.thumbnailCaption}
+                  </figcaption>
+                )}
+              </figure>
             )}
 
             {/* Conteúdo */}

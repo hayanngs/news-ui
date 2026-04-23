@@ -1,6 +1,7 @@
 // lib/api.ts
-import {News, PaginaEstatica, Person} from "@/types"
+import {Category, News, PaginaEstatica, Person} from "@/types"
 import {NOTICIAS_MOCK, PESSOAS_MOCK} from "@/lib/api-mock"
+import {CATEGORIES_CONFIG} from "@/constants";
 
 const API_URL = process.env.API_URL || "http://localhost:8080"
 const MOCK_ENABLED = process.env.MOCK_ENABLED === "true"
@@ -81,7 +82,10 @@ export async function getNewsBySlug(slug: string): Promise<News> {
     next: {revalidate: 300},
     signal: AbortSignal.timeout(3000),
   })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+
+  if (!res.ok)
+    throw new Error(`HTTP ${res.status}`)
+
   return res.json()
 }
 
@@ -116,6 +120,59 @@ export async function getPessoas(): Promise<Person[]> {
   return fetchApi(`${API_URL}/api/team`, PESSOAS_MOCK, {
     next: {revalidate: 3600},
   })
+}
+
+// -- Categorias --------------------------------------------------------
+
+export async function getAllCategories(): Promise<Category[]> {
+  if (MOCK_ENABLED) {
+    return CATEGORIES_CONFIG.map(c => ({name: c.name, slug: c.slug, color: c.color})) as Category[]
+  }
+
+  const response = await fetch(`${API_URL}/api/categories`, {
+    next: {revalidate: 3600},
+    signal: AbortSignal.timeout(3000)
+  })
+
+  if (!response.ok)
+    throw new Error()
+
+  const data = await response.json()
+
+  if (Array.isArray(data)) {
+    return data
+  }
+
+  if (Array.isArray(data.content)) {
+    return data.content
+  }
+
+  return []
+}
+
+export async function getCategoryBySlug(slug: string): Promise<Category> {
+  if (MOCK_ENABLED) {
+    const categoryConfig = CATEGORIES_CONFIG.find(c => c.slug === slug)
+    if (!categoryConfig) {
+      throw new Error(`Category with slug '${slug}' not found`)
+    }
+    return {
+      name: categoryConfig.name,
+      slug: categoryConfig.slug,
+      description: "categoryConfig.description",
+      isHighlight: true,
+      color: categoryConfig.color}
+  }
+
+  const response = await fetch(`${API_URL}/api/categories/${slug}`, {
+    next: {revalidate: 3600},
+    signal: AbortSignal.timeout(3000)
+  })
+
+  if (!response.ok)
+    throw new Error()
+
+  return await response.json()
 }
 
 // -- Páginas estáticas -------------------------------------------------

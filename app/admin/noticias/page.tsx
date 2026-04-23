@@ -89,9 +89,7 @@ export default function AdminNoticiasPage() {
                   )}
                   {item.isHighlight ? (
                     <span className="admin-status highlight">Destaque</span>
-                  ) : (
-                    <span className="admin-status highlight">Destaque</span>
-                  )}
+                  ) : null}
                 </td>
                 <td>
                   <div className="admin-actions">

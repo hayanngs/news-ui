@@ -182,3 +182,23 @@ export async function changeMyPassword(
     throw new Error(body || "Erro ao alterar senha")
   }
 }
+
+// -- Upload de imagem para S3 --
+
+export async function uploadImage(
+  token: string,
+  file: File
+): Promise<{ key: string }> {
+  const formData = new FormData()
+  formData.append("file", file)
+
+  const res = await fetch(`${API_URL}/api/admin/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  })
+
+  return handleResponse<{ key: string }>(res)
+}

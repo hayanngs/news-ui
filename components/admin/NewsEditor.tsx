@@ -1,13 +1,14 @@
 // components/admin/NewsEditor.tsx
 "use client"
 
-import React, {useState, useEffect, useMemo} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import dynamic from "next/dynamic"
 import {useAuth} from "@/lib/auth-context"
 import {Category, Tag, NewsFormData} from "@/types"
 import {
   fetchCategories,
   fetchTags,
+  uploadImage,
 } from "@/lib/admin-api"
 import {generateSlug} from "@/lib/utils"
 
@@ -44,6 +45,19 @@ const QUILL_FORMATS = [
   "image",
 ]
 
+/**
+ * Remove quebras de linha literais que o Quill pode inserir entre tags HTML,
+ * evitando que o backend/frontend renderize caracteres estranhos no lugar de espaços.
+ */
+function sanitizeHtmlContent(html: string): string {
+  return html
+    .replace(/\r\n|\r|\n/g, " ") // quebras de linha → espaço
+    .replace(/\s{2,}/g, " ")      // múltiplos espaços → um espaço
+    .replace(/&nbsp;/g, " ")
+    .replace(/\u00A0/g, " ")
+    .trim()
+}
+
 export default function NewsEditor({
                                      initialData,
                                      onSubmit,
@@ -57,25 +71,18 @@ export default function NewsEditor({
   const [slug, setSlug] = useState(initialData?.slug || "")
   const [summary, setSummary] = useState(initialData?.summary || "")
   const [content, setContent] = useState(initialData?.content || "")
-  const [thumbnailUrl, setThumbnailUrl] = useState(
-    initialData?.thumbnailUrl || ""
-  )
-  const [categorySlug, setCategorySlug] = useState(
-    initialData?.categorySlug || ""
-  )
-  const [selectedTags, setSelectedTags] = useState<number[]>(
-    initialData?.tagIds || []
-  )
-  const [author, setAuthor] = useState(initialData?.author || "")
-  const [published, setPublished] = useState(
-    initialData?.published ?? false
-  )
-  const [highlight, setHighlight] = useState(
-    initialData?.highlight ?? false
-  )
+  const [thumbnailUrl, setThumbnailUrl] = useState(initialData?.thumbnailUrl || "")
+  const [thumbnailCaption, setThumbnailCaption] = useState(initialData?.thumbnailCaption || "")
+  const [categorySlug, setCategorySlug] = useState(initialData?.categorySlug || "")
+  const [selectedTags, setSelectedTags] = useState<number[]>(initialData?.tagIds || [])
+  const [published, setPublished] = useState(initialData?.published ?? false)
+  const [highlight, setHighlight] = useState(initialData?.highlight ?? false)
+  const [editorial, setEditorial] = useState(initialData?.editorial ?? false)
   const [slugManual, setSlugManual] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState("")
+  const [uploading, setUploading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Carregar categorias e tags
   useEffect(() => {
@@ -104,6 +111,25 @@ export default function NewsEditor({
     )
   }
 
+  async function handleThumbnailUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file || !token) return
+
+    setUploading(true)
+    setError("")
+    try {
+      const {key} = await uploadImage(token, file)
+      const url = `https://media.diariogoiano.com.br/${key}`
+      setThumbnailUrl(url)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Erro ao fazer upload da imagem")
+    } finally {
+      setUploading(false)
+      // Limpa o input para permitir re-upload do mesmo arquivo se necessário
+      if (fileInputRef.current) fileInputRef.current.value = ""
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError("")
@@ -114,13 +140,14 @@ export default function NewsEditor({
         title,
         slug,
         summary,
-        content,
+        content: sanitizeHtmlContent(content),
         thumbnailUrl,
+        thumbnailCaption,
         categorySlug,
         tagIds: selectedTags,
-        author,
         published,
         highlight,
+        editorial
       })
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erro ao salvar")
@@ -194,20 +221,59 @@ export default function NewsEditor({
 
       {/* Thumbnail */}
       <div className="admin-form-group">
-        <label htmlFor="thumbnailUrl">URL da Thumbnail</label>
+        <label>Thumbnail</label>
+
+        {/* Upload de arquivo */}
+        <div style={{display: "flex", alignItems: "center", gap: 12, marginBottom: 8}}>
+          <input
+            ref={fileInputRef}
+            id="thumbnailFile"
+            type="file"
+            accept="image/*"
+            onChange={handleThumbnailUpload}
+            disabled={uploading}
+            style={{flex: 1}}
+          />
+          {uploading && (
+            <span style={{fontSize: 13, color: "var(--cinza-texto)"}}>
+              Enviando...
+            </span>
+          )}
+        </div>
+
+        {/* URL manual (fallback) */}
         <input
           id="thumbnailUrl"
           type="url"
           value={thumbnailUrl}
           onChange={(e) => setThumbnailUrl(e.target.value)}
-          placeholder="https://exemplo.com/imagem.jpg"
+          placeholder="Ou cole a URL da imagem diretamente"
+          style={{marginBottom: 8}}
         />
+
+        {/* Legenda da imagem */}
+        <input
+          id="thumbnailCaption"
+          type="text"
+          value={thumbnailCaption}
+          onChange={(e) => setThumbnailCaption(e.target.value)}
+          placeholder="Legenda / fonte da imagem (ex: Foto: Agência Brasil)"
+        />
+
+        {/* Preview */}
         {thumbnailUrl && (
-          <img
-            src={thumbnailUrl}
-            alt="Preview"
-            className="admin-thumbnail-preview"
-          />
+          <figure style={{marginTop: 10}}>
+            <img
+              src={thumbnailUrl}
+              alt="Preview"
+              className="admin-thumbnail-preview"
+            />
+            {thumbnailCaption && (
+              <figcaption style={{fontSize: 12, color: "var(--cinza-texto)", marginTop: 4}}>
+                {thumbnailCaption}
+              </figcaption>
+            )}
+          </figure>
         )}
       </div>
 
@@ -254,19 +320,6 @@ export default function NewsEditor({
         </div>
       </div>
 
-      {/* Autor */}
-      <div className="admin-form-group">
-        <label htmlFor="author">Autor</label>
-        <input
-          id="author"
-          type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          placeholder="Nome do autor"
-          required
-        />
-      </div>
-
       {/* Opções */}
       <div className="admin-form-row">
         <label className="admin-checkbox">
@@ -286,6 +339,15 @@ export default function NewsEditor({
           />
           <span>Destaque</span>
         </label>
+
+        <label className="admin-checkbox">
+          <input
+            type="checkbox"
+            checked={editorial}
+            onChange={(e) => setEditorial(e.target.checked)}
+          />
+          <span>Redação</span>
+        </label>
       </div>
 
       {/* Botão submit */}
@@ -293,7 +355,7 @@ export default function NewsEditor({
         <button
           type="submit"
           className="admin-btn admin-btn-primary"
-          disabled={saving}
+          disabled={saving || uploading}
         >
           {saving ? "Salvando..." : submitLabel}
         </button>

@@ -51,11 +51,14 @@ export interface News {
   readonly summary: string
   readonly content: string
   readonly thumbnailUrl: string
+  readonly thumbnailCaption?: string
   readonly category: Category
   readonly author: string
   readonly publishedAt: string
   readonly isPublished: boolean
   readonly isHighlight: boolean
+  readonly isEditorial: boolean
+  readonly tags: Tag[]
   readonly createdAt?: string
   readonly updatedAt: string
 }
@@ -67,11 +70,12 @@ export interface NewsFormData {
   summary: string
   content: string
   thumbnailUrl?: string
+  thumbnailCaption?: string
   categorySlug: string
   tagIds: number[]
-  author: string
   published: boolean
   highlight: boolean
+  editorial: boolean
 }
 
 // ══════════════════════════════════════════════
@@ -81,7 +85,9 @@ export interface NewsFormData {
 export interface Category {
   readonly name: string
   readonly slug: string
-  readonly color?: string
+  readonly description: string
+  readonly isHighlight: boolean
+  readonly color: string
 }
 
 export interface Tag {

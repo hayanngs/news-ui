@@ -14,18 +14,22 @@ async function fetchApi<T>(
   mock: T,
   opcoes?: RequestInit
 ): Promise<T> {
-  if (MOCK_ENABLED)
-    return mock
+  try {
+    const res = await fetch(url, {
+      ...opcoes,
+      signal: AbortSignal.timeout(3000),
+    })
 
-  const res = await fetch(url, {
-    ...opcoes,
-    signal: AbortSignal.timeout(3000),
-  })
+    if (!res.ok)
+      throw new Error(`HTTP ${res.status}`)
 
-  if (!res.ok)
-    throw new Error(`HTTP ${res.status}`)
+    return res.json()
+  } catch (error) {
+    if (MOCK_ENABLED)
+      return mock
 
-  return res.json()
+    throw error
+  }
 }
 
 // -- Notícias ----------------------------------------------------------
@@ -38,19 +42,24 @@ export async function getLastNews(page = 0, size = 12) {
     totalElementos: NOTICIAS_MOCK.length,
   }
 
-  if (MOCK_ENABLED) return mock
+  try {
+    const res = await fetch(
+      `${API_URL}/api/news?page=${page}&size=${size}&sort=publishedAt,desc`,
+      {next: {revalidate: 60}, signal: AbortSignal.timeout(3000)}
+    )
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
-  const res = await fetch(
-    `${API_URL}/api/news?page=${page}&size=${size}&sort=publishedAt,desc`,
-    {next: {revalidate: 60}, signal: AbortSignal.timeout(3000)}
-  )
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    return {
+      noticias: data.content as News[],
+      totalPaginas: data.totalPages as number,
+      totalElementos: data.totalElements as number,
+    }
+  } catch (error) {
+    if (MOCK_ENABLED)
+      return mock
 
-  const data = await res.json()
-  return {
-    noticias: data.content as News[],
-    totalPaginas: data.totalPages as number,
-    totalElementos: data.totalElements as number,
+    throw error
   }
 }
 
@@ -71,39 +80,47 @@ export async function getHighlightedNews(): Promise<News[]> {
 }
 
 export async function getNewsBySlug(slug: string): Promise<News> {
-  if (MOCK_ENABLED) {
-    const mock = NOTICIAS_MOCK.find(n => n.slug === slug)
-    if (!mock)
-      throw new Error(`Notícia não encontrada no mock: ${slug}`)
-    return mock
+  try {
+    const res = await fetch(`${API_URL}/api/news/${slug}`, {
+      next: {revalidate: 300},
+      signal: AbortSignal.timeout(3000),
+    })
+
+    if (!res.ok)
+      throw new Error(`HTTP ${res.status}`)
+
+    return res.json()
+  } catch (error) {
+    if (MOCK_ENABLED) {
+      const mock = NOTICIAS_MOCK.find(n => n.slug === slug)
+      if (!mock)
+        throw new Error(`Notícia não encontrada no mock: ${slug}`)
+      return mock
+    }
+
+    throw error
   }
-
-  const res = await fetch(`${API_URL}/api/news/${slug}`, {
-    next: {revalidate: 300},
-    signal: AbortSignal.timeout(3000),
-  })
-
-  if (!res.ok)
-    throw new Error(`HTTP ${res.status}`)
-
-  return res.json()
 }
 
 export async function getNewsByCategory(category: string): Promise<News[]> {
-  if (MOCK_ENABLED)
-    return NOTICIAS_MOCK.filter(n => n.category.slug === category)
+  try {
+    const res = await fetch(`${API_URL}/api/news/category/${category}?size=20`, {
+      next: {revalidate: 120},
+      signal: AbortSignal.timeout(3000)
+    })
 
-  const res = await fetch(`${API_URL}/api/news/category/${category}?size=20`, {
-    next: {revalidate: 120},
-    signal: AbortSignal.timeout(3000)
-  })
+    if (!res.ok)
+      throw new Error()
 
-  if (!res.ok)
-    throw new Error()
+    const data = await res.json()
 
-  const data = await res.json()
+    return data.content?.length ? data.content : []
+  } catch (error) {
+    if (MOCK_ENABLED)
+      return NOTICIAS_MOCK.filter(n => n.category.slug === category)
 
-  return data.content?.length ? data.content : []
+    throw error
+  }
 }
 
 export async function getAllSlugsNews(): Promise<string[]> {
@@ -125,54 +142,61 @@ export async function getPessoas(): Promise<Person[]> {
 // -- Categorias --------------------------------------------------------
 
 export async function getAllCategories(): Promise<Category[]> {
-  if (MOCK_ENABLED) {
-    return CATEGORIES_CONFIG.map(c => ({name: c.name, slug: c.slug, color: c.color})) as Category[]
+  try {
+    const response = await fetch(`${API_URL}/api/categories`, {
+      next: {revalidate: 3600},
+      signal: AbortSignal.timeout(3000)
+    })
+
+    if (!response.ok)
+      throw new Error()
+
+    const data = await response.json()
+
+    if (Array.isArray(data)) {
+      return data
+    }
+
+    if (Array.isArray(data.content)) {
+      return data.content
+    }
+
+    return []
+  } catch (error) {
+    if (MOCK_ENABLED) {
+      return CATEGORIES_CONFIG.map(c => ({name: c.name, slug: c.slug, color: c.color})) as Category[]
+    }
+    throw error
   }
-
-  const response = await fetch(`${API_URL}/api/categories`, {
-    next: {revalidate: 3600},
-    signal: AbortSignal.timeout(3000)
-  })
-
-  if (!response.ok)
-    throw new Error()
-
-  const data = await response.json()
-
-  if (Array.isArray(data)) {
-    return data
-  }
-
-  if (Array.isArray(data.content)) {
-    return data.content
-  }
-
-  return []
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category> {
-  if (MOCK_ENABLED) {
-    const categoryConfig = CATEGORIES_CONFIG.find(c => c.slug === slug)
-    if (!categoryConfig) {
-      throw new Error(`Category with slug '${slug}' not found`)
+  try {
+    const response = await fetch(`${API_URL}/api/categories/${slug}`, {
+      next: {revalidate: 3600},
+      signal: AbortSignal.timeout(3000)
+    })
+
+    if (!response.ok)
+      throw new Error()
+
+    return await response.json()
+  } catch (error) {
+    if (MOCK_ENABLED) {
+      const categoryConfig = CATEGORIES_CONFIG.find(c => c.slug === slug)
+      if (!categoryConfig) {
+        throw new Error(`Category with slug '${slug}' not found`)
+      }
+      return {
+        name: categoryConfig.name,
+        slug: categoryConfig.slug,
+        description: "categoryConfig.description",
+        isHighlight: true,
+        color: categoryConfig.color}
+    } else {
+      throw error
     }
-    return {
-      name: categoryConfig.name,
-      slug: categoryConfig.slug,
-      description: "categoryConfig.description",
-      isHighlight: true,
-      color: categoryConfig.color}
   }
-
-  const response = await fetch(`${API_URL}/api/categories/${slug}`, {
-    next: {revalidate: 3600},
-    signal: AbortSignal.timeout(3000)
-  })
-
-  if (!response.ok)
-    throw new Error()
-
-  return await response.json()
 }
 
 // -- Páginas estáticas -------------------------------------------------
@@ -180,18 +204,21 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
 export async function getPaginaEstatica(
   pagina: "sobre" | "direitos"
 ): Promise<PaginaEstatica> {
-  if (MOCK_ENABLED) {
-    return {
-      titulo: pagina === "sobre" ? "Sobre o Diário Goiano" : "Direitos e Privacidade",
-      conteudo: "<p>Conteúdo disponível em breve.</p>",
-      atualizadoEm: new Date().toISOString(),
+  try {
+    const res = await fetch(`${API_URL}/api/pages/${pagina}`, {
+      next: {revalidate: 3600},
+      signal: AbortSignal.timeout(3000),
+    })
+    if (!res.ok) throw new Error(`Página não encontrada: ${pagina}`)
+    return res.json()
+  } catch (error) {
+    if (MOCK_ENABLED) {
+      return {
+        titulo: pagina === "sobre" ? "Sobre o Diário Goiano" : "Direitos e Privacidade",
+        conteudo: "<p>Conteúdo disponível em breve.</p>",
+        atualizadoEm: new Date().toISOString(),
+      }
     }
+    throw error
   }
-
-  const res = await fetch(`${API_URL}/api/pages/${pagina}`, {
-    next: {revalidate: 3600},
-    signal: AbortSignal.timeout(3000),
-  })
-  if (!res.ok) throw new Error(`Página não encontrada: ${pagina}`)
-  return res.json()
 }

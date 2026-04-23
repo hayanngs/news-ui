@@ -66,6 +66,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-10T09:00:00",
     isPublished: true,
     isHighlight: true,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "2",
@@ -81,6 +83,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-09T11:30:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "3",
@@ -96,6 +100,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-08T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "4",
@@ -111,6 +117,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-07T14:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "5",
@@ -126,6 +134,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-08T11:15:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "6",
@@ -141,6 +151,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-06T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "7",
@@ -156,6 +168,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-05T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "8",
@@ -171,6 +185,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-04T14:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "9",
@@ -186,6 +202,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-03T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "10",
@@ -201,6 +219,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-02T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "11",
@@ -216,6 +236,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-01T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "12",
@@ -231,6 +253,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-28T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "13",
@@ -246,6 +270,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-27T11:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "14",
@@ -261,6 +287,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-26T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "15",
@@ -276,6 +304,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-25T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "16",
@@ -291,6 +321,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-24T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "17",
@@ -306,6 +338,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-23T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "18",
@@ -321,6 +355,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-22T11:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "19",
@@ -336,6 +372,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-21T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "20",
@@ -351,6 +389,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-20T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
 
   // ── ECONOMIA (20 notícias) ─────────────────────────────────────────
@@ -368,6 +408,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-09T14:30:00",
     isPublished: true,
     isHighlight: true,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "22",
@@ -383,6 +425,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-06T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "23",
@@ -398,6 +442,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-05T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "24",
@@ -413,6 +459,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-04T11:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "25",
@@ -428,6 +476,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-03T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "26",
@@ -443,6 +493,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-02T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "27",
@@ -458,6 +510,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-01T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "28",
@@ -473,6 +527,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-28T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "29",
@@ -488,6 +544,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-27T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "30",
@@ -503,6 +561,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-26T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "31",
@@ -518,6 +578,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-25T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "32",
@@ -533,6 +595,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-24T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "33",
@@ -548,6 +612,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-23T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "34",
@@ -563,6 +629,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-22T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "35",
@@ -578,6 +646,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-21T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "36",
@@ -593,6 +663,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-20T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "37",
@@ -608,6 +680,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-19T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "38",
@@ -623,6 +697,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-18T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "39",
@@ -638,6 +714,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-17T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "40",
@@ -653,6 +731,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-16T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
 
   // ── ESPORTE (15 notícias) ──────────────────────────────────────────
@@ -670,6 +750,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-10T22:30:00",
     isPublished: true,
     isHighlight: true,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "42",
@@ -685,6 +767,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-08T16:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "43",
@@ -700,6 +784,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-07T19:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "44",
@@ -715,6 +801,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-05T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "45",
@@ -730,6 +818,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-04T21:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "46",
@@ -745,6 +835,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-03T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "47",
@@ -760,6 +852,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-02T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "48",
@@ -775,6 +869,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-01T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "49",
@@ -790,6 +886,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-28T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "50",
@@ -805,6 +903,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-27T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "51",
@@ -820,6 +920,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-26T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "52",
@@ -835,6 +937,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-25T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "53",
@@ -850,6 +954,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-24T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "54",
@@ -865,6 +971,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-23T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "55",
@@ -880,6 +988,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-22T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
 
   // ── ENTRETENIMENTO (15 notícias) ──────────────────────────────────
@@ -897,6 +1007,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-10T12:00:00",
     isPublished: true,
     isHighlight: true,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "57",
@@ -912,6 +1024,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-09T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "58",
@@ -927,6 +1041,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-08T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "59",
@@ -942,6 +1058,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-06T14:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "60",
@@ -957,6 +1075,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-06T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "61",
@@ -972,6 +1092,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-05T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "62",
@@ -987,6 +1109,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-04T11:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "63",
@@ -1002,6 +1126,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-03T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "64",
@@ -1017,6 +1143,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-02T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "65",
@@ -1032,6 +1160,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-01T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "66",
@@ -1047,6 +1177,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-28T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "67",
@@ -1062,6 +1194,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-27T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "68",
@@ -1077,6 +1211,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-26T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "69",
@@ -1092,6 +1228,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-25T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "70",
@@ -1107,6 +1245,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-24T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
 
   // ── SEGURANÇA (15 notícias) ────────────────────────────────────────
@@ -1124,6 +1264,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-10T06:00:00",
     isPublished: true,
     isHighlight: true,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "72",
@@ -1139,6 +1281,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-07T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "73",
@@ -1154,6 +1298,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-05T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "74",
@@ -1169,6 +1315,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-04T09:30:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "75",
@@ -1184,6 +1332,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-03T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "76",
@@ -1199,6 +1349,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-02T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "77",
@@ -1214,6 +1366,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-03-01T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "78",
@@ -1229,6 +1383,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-28T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "79",
@@ -1244,6 +1400,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-27T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "80",
@@ -1259,6 +1417,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-26T08:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "81",
@@ -1274,6 +1434,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-25T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "82",
@@ -1289,6 +1451,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-24T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "83",
@@ -1304,6 +1468,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-23T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "84",
@@ -1319,6 +1485,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-22T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "85",
@@ -1334,6 +1502,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-21T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
 
   // ── MAIS NOTÍCIAS VARIADAS (15 notícias) ──────────────────────────
@@ -1351,6 +1521,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-20T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "87",
@@ -1366,6 +1538,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-19T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "88",
@@ -1381,6 +1555,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-18T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "89",
@@ -1396,6 +1572,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-17T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "90",
@@ -1411,6 +1589,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-16T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "91",
@@ -1426,6 +1606,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-15T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "92",
@@ -1441,6 +1623,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-14T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "93",
@@ -1456,6 +1640,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-13T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "94",
@@ -1471,6 +1657,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-12T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "95",
@@ -1486,6 +1674,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-11T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "96",
@@ -1501,6 +1691,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-10T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "97",
@@ -1516,6 +1708,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-09T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "98",
@@ -1531,6 +1725,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-08T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "99",
@@ -1546,6 +1742,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-07T09:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
   {
     id: "100",
@@ -1561,6 +1759,8 @@ export const NOTICIAS_MOCK: News[] = [
     updatedAt:  "2025-02-06T10:00:00",
     isPublished: true,
     isHighlight: false,
+    isEditorial: true, 
+    tags: []
   },
 ]
 

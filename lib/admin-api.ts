@@ -8,8 +8,10 @@ import {
   LoginResponse,
   NewsFormData,
 } from "@/types"
+import {NOTICIAS_MOCK} from "@/lib/api-mock";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
+const MOCK_ENABLED = process.env.NEXT_PUBLIC_MOCK_ENABLED === 'true'
 
 // -- Helper para requisições autenticadas --
 
@@ -48,20 +50,35 @@ export async function login(
 // -- Notícias --
 
 export async function fetchAdminNews(token: string): Promise<News[]> {
-  const res = await fetch(`${API_URL}/api/admin/news`, {
-    headers: authHeaders(token),
-  })
-  return handleResponse<News[]>(res)
+  try {
+    const res = await fetch(`${API_URL}/api/admin/news`, {
+      headers: authHeaders(token),
+    })
+    return handleResponse<News[]>(res)
+  } catch (error) {
+    if (MOCK_ENABLED) {
+      return NOTICIAS_MOCK.slice(0, 5)
+    }
+    throw error
+  }
 }
 
 export async function fetchNewsById(
   token: string,
   id: string
 ): Promise<News> {
-  const res = await fetch(`${API_URL}/api/admin/news/${id}`, {
-    headers: authHeaders(token),
-  })
-  return handleResponse<News>(res)
+  try {
+    const res = await fetch(`${API_URL}/api/admin/news/${id}`, {
+      headers: authHeaders(token),
+    })
+    return handleResponse<News>(res)
+  } catch (error) {
+    if (MOCK_ENABLED) {
+      return NOTICIAS_MOCK.find(it => it.id === id) as News
+    }
+
+    throw error
+  }
 }
 
 export async function createNews(

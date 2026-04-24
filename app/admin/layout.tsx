@@ -4,7 +4,7 @@ import {AuthProvider} from "@/lib/auth-context"
 import type {Metadata} from "next"
 
 export const metadata: Metadata = {
-  title: "Admin | Diário Goiano",
+  title: "Admin",
   robots: "noindex, nofollow",
 }
 

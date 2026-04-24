@@ -61,7 +61,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
       },
     }
   } catch {
-    return {title: "Notícia não encontrada | Diário Goiano"}
+    return {title: "Notícia não encontrada"}
   }
 }
 

@@ -83,7 +83,7 @@ export default function AdminNoticiasPage() {
                       {item.category.name}
                     </span>
                 </td>
-                <td>{item.author}</td>
+                <td>{item.user.name}</td>
                 <td>
                   {item.isPublished ? (
                     <span className="admin-status published">Publicado</span>

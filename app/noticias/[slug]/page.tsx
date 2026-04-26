@@ -9,6 +9,7 @@ import {BADGE_CLASSE} from "@/constants"
 import {News} from "@/types";
 import {JsonLdNews} from "@/components/JsonLdNews";
 import {CardLista} from "@/components/CardNoticia";
+import React from "react";
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -42,7 +43,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
         locale: "pt_BR",
         type: "article",
         publishedTime: news.publishedAt,      // data de publicação
-        authors: [news.author],
+        authors: [news.user.name],
         section: news.category.name,          // "Política", "Esporte", etc.
         images: news.thumbnailUrl ? [{
           url: news.thumbnailUrl,
@@ -144,11 +145,13 @@ export default async function PaginaNoticia({params}: Props) {
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-4" style={{borderTop: "1px solid var(--borda)", fontSize: 13, color: "var(--cinza-texto)"}}>
-                <div style={{width: 34, height: 34, borderRadius: "50%", background: "var(--azul)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: 14, flexShrink: 0}}>
-                  {noticia.author.charAt(0)}
+                <div style={{width: 45, height: 45, borderRadius: "50%", background: "var(--azul)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: 14, flexShrink: 0, overflow: "hidden", border: "2px solid var(--azul)"}}>
+                  {noticia.user.photoUrl ? (
+                    <img src={noticia.user.photoUrl} alt={noticia.user.name} style={{width: "100%", height: "100%", objectFit: "cover", flexShrink: 0}} />
+                  ) : noticia.user.name.charAt(0)}
                 </div>
                 <div>
-                  <span style={{fontWeight: 600, color: "var(--texto)"}}>{noticia.author}</span>
+                  <span style={{fontWeight: 600, color: "var(--texto)"}}>{noticia.user.name}</span>
                   <span className="hidden sm:inline" style={{margin: "0 8px", color: "var(--borda)"}}>·</span>
                   <br className="sm:hidden"/>
                   <div>
@@ -206,7 +209,7 @@ export default async function PaginaNoticia({params}: Props) {
             <JsonLdNews
               title={noticia.title}
               summary={noticia.summary}
-              author={noticia.author}
+              author={noticia.user.name}
               publishedAt={noticia.publishedAt}
               slug={noticia.slug}
               thumbnailUrl={noticia.thumbnailUrl}/>

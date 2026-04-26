@@ -81,7 +81,7 @@ export function CardHero({noticia}: { noticia: News }) {
           </p>
 
           <p style={{color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 8}}>
-            {noticia.author} ·{" "}
+            {noticia.user.name} ·{" "}
             <time dateTime={noticia.publishedAt}>
               {formatarDataRelativa(noticia.publishedAt)}
             </time>

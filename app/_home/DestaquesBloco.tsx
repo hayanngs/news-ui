@@ -26,7 +26,7 @@ function CardDestaqueSec({noticia}: {noticia: News}) {
             {noticia.title}
           </h3>
           <p style={{color: "rgba(255,255,255,0.55)", fontSize: 11, marginTop: 5}}>
-            {noticia.author} · <time dateTime={noticia.publishedAt}>{formatarDataRelativa(noticia.publishedAt)}</time>
+            {noticia.user.name} · <time dateTime={noticia.publishedAt}>{formatarDataRelativa(noticia.publishedAt)}</time>
           </p>
         </div>
       </article>

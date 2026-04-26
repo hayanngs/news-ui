@@ -56,7 +56,7 @@ function CardNoticiaLista({noticia}: { noticia: News }) {
             {noticia.summary}
           </p>
           <div style={{display: "flex", gap: 8, fontSize: 12, color: "var(--cinza-medio)"}}>
-            <span style={{fontWeight: 600, color: "var(--cinza-texto)"}}>{noticia.author}</span>
+            <span style={{fontWeight: 600, color: "var(--cinza-texto)"}}>{noticia.user.name}</span>
             <span>·</span>
             <time className="capitalize">{formatarData(noticia.publishedAt)}</time>
           </div>

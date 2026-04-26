@@ -53,7 +53,7 @@ export interface News {
   readonly thumbnailUrl: string
   readonly thumbnailCaption?: string
   readonly category: Category
-  readonly author: string
+  readonly user: Person
   readonly publishedAt: string
   readonly isPublished: boolean
   readonly isHighlight: boolean

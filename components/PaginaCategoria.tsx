@@ -49,7 +49,7 @@ function CardDestaquePrincipal({noticia}: { noticia: News }) {
             </p>
           )}
           <div style={{fontSize: 12, color: "var(--cinza-medio)", marginTop: "auto", display: "flex", gap: 6}}>
-            <span>{noticia.author}</span>
+            <span>{noticia.user.name}</span>
             <span>·</span>
             <time>{formatarData(noticia.publishedAt)}</time>
           </div>
@@ -97,7 +97,7 @@ function CardLateral({noticia}: { noticia: News }) {
             {noticia.title}
           </h3>
           <div style={{fontSize: 11, color: "var(--cinza-medio)", display: "flex", gap: 5, marginTop: 8, flexWrap: "wrap"}}>
-            <span>{noticia.author}</span>
+            <span>{noticia.user.name}</span>
             <span>·</span>
             <time>{formatarData(noticia.publishedAt)}</time>
           </div>
@@ -144,7 +144,7 @@ function CardGrade({noticia}: { noticia: News }) {
             </p>
           )}
           <div style={{fontSize: 11, color: "var(--cinza-medio)", display: "flex", gap: 5, marginTop: "auto"}}>
-            <span>{noticia.author}</span>
+            <span>{noticia.user.name}</span>
             <span>·</span>
             <time>{formatarData(noticia.publishedAt)}</time>
           </div>

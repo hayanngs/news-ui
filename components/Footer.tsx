@@ -97,14 +97,12 @@ export function Footer() {
               }}
             >
               <span>{CONTATOS.redacao}</span>
-              <span>{CONTATOS.geral}</span>
-              <span>{CONTATOS.privacidade}</span>
             </address>
           </div>
         </div>
       </div>
 
-      <div style={{background: "#001f33", padding: "10px 0"}}>
+      <div style={{background: "var(--azul)", padding: "10px 0"}}>
         <div
           className="w-portal"
           style={{

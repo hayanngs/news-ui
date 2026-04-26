@@ -4,7 +4,7 @@ import {NOTICIAS_MOCK, PESSOAS_MOCK} from "@/lib/api-mock"
 import {CATEGORIES_CONFIG} from "@/constants";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
-const MOCK_ENABLED = process.env.MOCK_ENABLED === "true"
+const MOCK_ENABLED = process.env.NEXT_PUBLIC_MOCK_ENABLED === "true"
 
 // Helper: usa mock se MOCK_ENABLED, senão chama a API.
 // Se a API falhar, LANÇA erro — quem chama decide o que fazer

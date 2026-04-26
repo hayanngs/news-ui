@@ -21,7 +21,7 @@
   --borda:         #DEDEDE;
   --cinza-texto:   #666666;
   --cinza-medio:   #999999;
-  --texto:         #1A1A1A;
+  --texto: #212121;
 
   /* Categorias */
   --cat-politica:       #C0392B;
@@ -164,6 +164,37 @@ img {
   height: auto; 
   margin: 1.5rem 0; 
   border-radius: 4px; 
+}
+
+.conteudo-noticia figure {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 60%;
+  float: none;
+}
+
+.conteudo-noticia figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.conteudo-noticia figure figcaption {
+  font-size: 12px;
+  color: var(--cinza-texto);
+  font-style: italic;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--borda);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .conteudo-noticia figure {
+    max-width: 100%;
+  }
 }
 
 /* Animações */
@@ -866,6 +897,25 @@ nav::-webkit-scrollbar { display: none; }
 }
 
 /* ----- Admin Forms ----- */
+/* Botão "figura com legenda" na toolbar do Quill */
+.ql-figure-with-caption {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  padding: 0 6px !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+
+.ql-figure-with-caption::before {
+  content: "🖼";
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  font-size: 14px;
+}
+
 .admin-news-form {
   background: #fff;
   border: 1px solid var(--borda);

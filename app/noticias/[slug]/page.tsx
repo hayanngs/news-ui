@@ -155,13 +155,13 @@ export default async function PaginaNoticia({params}: Props) {
                     <span className="hidden sm:inline" style={{marginRight: "8px"}}>
                       Publicado em:
                     </span>
-                    <time className="capitalize" style={{fontSize: 12}}>{formatarData(noticia.publishedAt)}</time>
+                    <time dateTime={noticia.publishedAt} style={{fontSize: 12}}>{formatarData(noticia.publishedAt)}</time>
                   </div>
                   <div>
                     <span className="hidden sm:inline" style={{marginRight: "8px"}}>
                       Última atualização:
                     </span>
-                    <time className="capitalize" style={{fontSize: 12}}>{formatarData(noticia.updatedAt)}</time>
+                    <time dateTime={noticia.updatedAt} style={{fontSize: 12}}>{formatarData(noticia.updatedAt)}</time>
                   </div>
                 </div>
               </div>

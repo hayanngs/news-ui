@@ -45,7 +45,5 @@ export const CATEGORIAS_FOOTER: readonly NavLink[] = CATEGORIAS.filter(
 
 // ── Contatos ──
 export const CONTATOS = {
-  redacao: "redacao@diariogoiano.com.br",
-  geral: "contato@diariogoiano.com.br",
-  privacidade: "privacidade@diariogoiano.com.br",
+  redacao: "diariogoianooficial@gmail.com"
 } as const

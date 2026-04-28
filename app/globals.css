@@ -150,6 +150,43 @@ img {
   margin: 2rem 0 0.8rem;
 }
 
+.conteudo-noticia ul,
+.conteudo-noticia ol {
+  margin: 0 0 1.4rem 1.4rem;
+  padding-left: 1.6rem;
+}
+
+.conteudo-noticia ul {
+  list-style-type: disc;
+}
+
+.conteudo-noticia ol {
+  list-style-type: decimal;
+}
+
+.conteudo-noticia li {
+  margin-bottom: 0.4rem;
+  line-height: 1.75;
+  padding-left: 0.3rem;
+}
+
+.conteudo-noticia li::marker {
+  color: var(--azul);
+  font-weight: 700;
+}
+
+/* Lista aninhada */
+.conteudo-noticia ul ul,
+.conteudo-noticia ol ol,
+.conteudo-noticia ul ol,
+.conteudo-noticia ol ul {
+  margin: 0.4rem 0 0.2rem 0;
+}
+
+.conteudo-noticia ul ul {
+  list-style-type: circle;
+}
+
 .conteudo-noticia blockquote {
   border-left: 4px solid var(--azul);
   padding-left: 1.2rem;
@@ -269,6 +306,24 @@ img {
 
 .footer-link:hover { 
   color: #fff; 
+}
+
+.footer-grid {
+  display: grid;
+  gap: 32px 40px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
 }
 
 /* Página Header (Internas) */

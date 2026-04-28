@@ -1,7 +1,6 @@
 // lib/api.ts
 import {Category, News, PaginaEstatica, Person} from "@/types"
-import {NOTICIAS_MOCK, PESSOAS_MOCK} from "@/lib/api-mock"
-import {CATEGORIES_CONFIG} from "@/constants";
+import {CATEGORIES_MOCK, NOTICIAS_MOCK, PESSOAS_MOCK} from "@/lib/api-mock"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"
 const MOCK_ENABLED = process.env.NEXT_PUBLIC_MOCK_ENABLED === "true"
@@ -164,7 +163,7 @@ export async function getAllCategories(): Promise<Category[]> {
     return []
   } catch (error) {
     if (MOCK_ENABLED) {
-      return CATEGORIES_CONFIG.map(c => ({name: c.name, slug: c.slug, color: c.color})) as Category[]
+      return CATEGORIES_MOCK.map(c => ({id: c.id, name: c.name, slug: c.slug, color: c.color})) as Category[]
     }
     throw error
   }
@@ -183,11 +182,12 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
     return await response.json()
   } catch (error) {
     if (MOCK_ENABLED) {
-      const categoryConfig = CATEGORIES_CONFIG.find(c => c.slug === slug)
+      const categoryConfig = CATEGORIES_MOCK.find(c => c.slug === slug)
       if (!categoryConfig) {
         throw new Error(`Category with slug '${slug}' not found`)
       }
       return {
+        id: categoryConfig.id,
         name: categoryConfig.name,
         slug: categoryConfig.slug,
         description: "categoryConfig.description",

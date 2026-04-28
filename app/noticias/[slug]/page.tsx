@@ -10,6 +10,7 @@ import {News} from "@/types";
 import {JsonLdNews} from "@/components/JsonLdNews";
 import {CardLista} from "@/components/CardNoticia";
 import React from "react";
+import {PillList} from "@/components/PillList";
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -202,6 +203,8 @@ export default async function PaginaNoticia({params}: Props) {
             <div className="p-5 sm:p-7">
               <div className="conteudo-noticia"
                    dangerouslySetInnerHTML={{__html: noticia.content}}/>
+              <PillList titulo="CATEGORIAS" items={noticia.category} buildHref={item => `/categoria/${item.slug}`}/>
+              <PillList titulo="TAGS" items={noticia.tags} buildHref={item => `/tag/${item.slug}`}/>
               <BotoesCompartilhar titulo={noticia.title}/>
             </div>
 

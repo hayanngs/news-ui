@@ -72,7 +72,7 @@ export interface NewsFormData {
   thumbnailUrl?: string
   thumbnailCaption?: string
   categorySlug: string
-  tagIds: number[]
+  tagIds: string[]
   published: boolean
   highlight: boolean
   editorial: boolean
@@ -83,6 +83,7 @@ export interface NewsFormData {
 // ══════════════════════════════════════════════
 
 export interface Category {
+  readonly id: string
   readonly name: string
   readonly slug: string
   readonly description: string
@@ -91,7 +92,7 @@ export interface Category {
 }
 
 export interface Tag {
-  readonly id: number
+  readonly id: string
   readonly name: string
   readonly slug: string
 }

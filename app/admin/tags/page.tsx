@@ -48,7 +48,7 @@ export default function AdminTagsPage() {
     }
   }
 
-  async function handleDelete(id: number) {
+  async function handleDelete(id: string) {
     if (!token || !confirm("Excluir esta tag?")) return
     try {
       await deleteTag(token, id)

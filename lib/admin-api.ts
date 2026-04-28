@@ -149,7 +149,7 @@ export async function createTag(
 
 export async function deleteTag(
   token: string,
-  id: number
+  id: string
 ): Promise<void> {
   const res = await fetch(`${API_URL}/api/admin/tags/${id}`, {
     method: "DELETE",

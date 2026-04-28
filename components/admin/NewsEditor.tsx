@@ -150,7 +150,7 @@ export default function NewsEditor({initialData, onSubmit, submitLabel}: NewsEdi
   const [thumbnailUrl, setThumbnailUrl] = useState(initialData?.thumbnailUrl || "")
   const [thumbnailCaption, setThumbnailCaption] = useState(initialData?.thumbnailCaption || "")
   const [categorySlug, setCategorySlug] = useState(initialData?.categorySlug || "")
-  const [selectedTags, setSelectedTags] = useState<number[]>(initialData?.tagIds || [])
+  const [selectedTags, setSelectedTags] = useState<string[]>(initialData?.tagIds || [])
   const [published, setPublished] = useState(initialData?.published ?? false)
   const [highlight, setHighlight] = useState(initialData?.highlight ?? false)
   const [editorial, setEditorial] = useState(initialData?.editorial ?? false)
@@ -213,7 +213,7 @@ export default function NewsEditor({initialData, onSubmit, submitLabel}: NewsEdi
     setSlug(generateSlug(value))
   }
 
-  function handleTagToggle(id: number) {
+  function handleTagToggle(id: string) {
     setSelectedTags(prev =>
       prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
     )

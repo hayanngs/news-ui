@@ -9,6 +9,7 @@ import {Category, News, Person} from "@/types";
 
 export const CATEGORIES_MOCK: Category[] = [
   {
+    id: "a",
     name: "Política",
     slug: "politica",
     description: "Cobertura política nacional e estadual",
@@ -16,6 +17,7 @@ export const CATEGORIES_MOCK: Category[] = [
     color: "#C0392B"
   },
   {
+    id: "b",
     name: "Economia",
     slug: "economia",
     description: "Mercado, finanças e negócios",
@@ -23,6 +25,7 @@ export const CATEGORIES_MOCK: Category[] = [
     color: "#C0392B"
   },
   {
+    id: "c",
     name: "Esporte",
     slug: "esporte",
     description: "Futebol, olimpíadas e muito mais",
@@ -30,6 +33,7 @@ export const CATEGORIES_MOCK: Category[] = [
     color: "#C0392B"
   },
   {
+    id: "d",
     name: "Entretenimento",
     slug: "entretenimento",
     description: "Cultura, cinema, música e celebridades",
@@ -37,6 +41,7 @@ export const CATEGORIES_MOCK: Category[] = [
     color: "#C0392B"
   },
   {
+    id: "e",
     name: "Segurança",
     slug: "seguranca",
     description: "Segurança pública, ocorrências e polícia",

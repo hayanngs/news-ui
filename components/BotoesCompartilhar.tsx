@@ -34,7 +34,7 @@ export function BotoesCompartilhar({titulo}: { titulo: string }) {
 
   return (
     <div className="mt-12 pt-6 border-t border-[var(--cor-borda)]">
-      <p className="text-sm font-semibold text-[var(--cor-texto-suave)] mb-3">
+      <p className="text-sm font-semibold text-[var(--texto)] mb-3">
         Compartilhar
       </p>
       <div className="flex gap-3">

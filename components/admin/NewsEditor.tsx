@@ -134,6 +134,11 @@ function sanitizeHtmlContent(html: string): string {
     .replace(/\r\n|\r|\n/g, " ")
     .replace(/\s{2,}/g, " ")
     .replace(/&nbsp;/g, " ")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
     .replace(/\u00A0/g, " ")
     .trim()
 }

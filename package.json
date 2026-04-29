@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postBuild": "next-sitemap"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "jose": "^6.2.2",

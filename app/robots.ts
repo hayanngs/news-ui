@@ -17,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://diariogoiano.com.br/sitemap.xml",
+    sitemap: "https://www.diariogoiano.com.br/sitemap.xml",
   }
 }

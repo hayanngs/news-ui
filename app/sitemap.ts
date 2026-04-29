@@ -5,7 +5,7 @@
 import { MetadataRoute } from "next"
 import { getAllSlugsNews } from "@/lib/api"
 
-const BASE_URL = "https://diariogoiano.com.br"
+const BASE_URL = "https://www.diariogoiano.com.br"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Páginas estáticas — sempre presentes

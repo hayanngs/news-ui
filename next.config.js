@@ -13,6 +13,16 @@ const nextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'diariogoiano.com.br' }],
+        destination: 'https://www.diariogoiano.com.br/:path*',
+        permanent: true,
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

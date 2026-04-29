@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postBuild": "next-sitemap"
   },
   "dependencies": {
     "jose": "^6.2.2",
     "next": "16.2.3",
+    "next-sitemap": "^4.2.3",
     "react": "^18",
     "react-dom": "^18",
     "react-quill-new": "^3.8.3"
